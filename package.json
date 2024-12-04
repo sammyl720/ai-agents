@@ -1,0 +1,47 @@
+{
+	"name": "@sammyl720/ai-agents",
+	"version": "1.0.0",
+	"description": "Extends the capabilities of openai by creating agents that work together.",
+	"keywords": [
+		"openai",
+		"agents",
+		"typescript"
+	],
+	"homepage": "https://github.com/sammyl720/ai-agents",
+	"bugs": {
+		"url": "https://github.com/sammyl720/ai-agents/issues"
+	},
+	"author": "Shmuel Leider",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sammyl720/ai-agents.git"
+	},
+	"license": "MIT",
+	"files": [
+		"dist"
+	],
+	"main": "dist/index.js",
+	"scripts": {
+		"test": "vitest run",
+		"build": "tsc",
+		"ci": "npm run build && npm run check-format && npm run check-exports && npm run test",
+		"format": "prettier --write .",
+		"check-format": "prettier --check .",
+		"check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+		"dev": "vitest",
+		"prepublishOnly": "npm run ci",
+		"local-release": "changeset version && changeset publish"
+	},
+	"type": "module",
+	"devDependencies": {
+		"@arethetypeswrong/cli": "^0.16.4",
+		"@changesets/cli": "^2.27.8",
+		"prettier": "^3.3.3",
+		"typescript": "^5.6.2",
+		"vitest": "^2.1.1"
+	},
+	"dependencies": {
+		"openai": "^4.75.0",
+		"zod": "^3.23.8"
+	}
+}
