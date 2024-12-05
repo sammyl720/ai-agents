@@ -14,4 +14,8 @@ export class Tool implements ITool {
 	get toolName() {
 		return this.definition.function.name;
 	}
+
+	isIncluded(tools: ITool[]): boolean {
+		return tools.some((t) => t.toolName === this.toolName);
+	}
 }

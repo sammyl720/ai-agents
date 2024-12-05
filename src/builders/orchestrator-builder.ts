@@ -1,15 +1,24 @@
 import type OpenAI from 'openai';
-import type { IAgent, IBuilder, IOrchestrator } from '../types.js';
+import type {
+	IAgent,
+	IBuilder,
+	IOrchestrationStrategy,
+	IOrchestrator,
+	ITool,
+} from '../types.js';
 import { Orchestrator } from '../orchestrator/orchestrator.js';
+import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 
 export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
 	private openAI: OpenAI | null = null;
 	private agents: IAgent[] = [];
+	private strategy: IOrchestrationStrategy = new ProjectStrategy();
+	private tools: ITool[] = [];
 
 	build() {
 		if (this.openAI === null) {
 			throw new Error(
-				`Please pass in your OPENAI client first to the  AgentBuilder.addOpenAIClient(client) method.`,
+				`Please pass in your OPENAI client first to the  AgentBuilder.setOpenAIClient(client) method.`,
 			);
 		} else if (this.agents.length === 0) {
 			throw new Error(
@@ -17,14 +26,38 @@ export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
 			);
 		}
 
-		return new Orchestrator(this.openAI, this.agents);
+		return new Orchestrator(
+			this.openAI,
+			this.agents,
+			this.tools,
+			this.strategy,
+		);
 	}
 
 	isBuildable() {
 		return this.openAI !== null && this.agents.length > 0;
 	}
 
-	addOpenAIClient(openAI: OpenAI) {
+	setStrategy(strategy: IOrchestrationStrategy) {
+		this.strategy = strategy;
+		return this;
+	}
+
+	addTool(tool: ITool) {
+		if (!tool.isIncluded(this.tools)) {
+			this.tools.push(tool);
+		}
+		return this;
+	}
+
+	addTools(tools: Iterable<ITool>) {
+		for (const tool of tools) {
+			this.addTool(tool);
+		}
+		return this;
+	}
+
+	setOpenAIClient(openAI: OpenAI) {
 		this.openAI = openAI;
 		return this;
 	}

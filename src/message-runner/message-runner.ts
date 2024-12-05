@@ -56,10 +56,17 @@ export class MessageRunner implements IMessageRunner {
 		};
 
 		if (tools.length) {
-			const toolDefinitions = tools.map((tool) => tool.definition);
-			createParams.tools = toolDefinitions;
+			createParams.tools = this.getUniqueToolDefinitions(tools);
 		}
 
 		return createParams;
+	}
+
+	private getUniqueToolDefinitions(tools: ITool[]) {
+		return [
+			...new Map(
+				tools.map((tool) => [tool.toolName, tool.definition]),
+			).values(),
+		];
 	}
 }

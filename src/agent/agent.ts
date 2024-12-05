@@ -61,7 +61,7 @@ export class Agent implements IAgent {
 		this.messageHandler = new MessageHandler();
 		this.messageHandler.addMessage({
 			role: 'system',
-			content: this.getSystemPrompt(orchestrator),
+			content: orchestrator.strategy.getAgentPrompt(orchestrator, this),
 		});
 	}
 
@@ -101,6 +101,10 @@ export class Agent implements IAgent {
 		);
 		response.content = newMessage?.content?.toString() ?? 'No response';
 		return response;
+	}
+
+	isIncluded(tools: ITool[]): boolean {
+		return tools.some((t) => this.toolName === t.toolName);
 	}
 
 	getGlobalTools(): ITool[] {
@@ -156,22 +160,6 @@ export class Agent implements IAgent {
 				},
 			},
 		};
-	}
-
-	private getSystemPrompt(orchestrator: IOrchestrator) {
-		const instructions = orchestrator.Instructions;
-		return `## You are an agent working within a team to complete a given goal.
-        
-        ### The following designations have been assigned to you: ${this.AgentDetails}
-
-        You be assigned tasks that are suited for you given your designation.
-
-        ### Agent's on your team
-        ${orchestrator.getAgentsDetails()}
-        
-        ### Your team has been given the following goal:
-        ${orchestrator.Instructions}
-        `;
 	}
 
 	AgentDetails = `

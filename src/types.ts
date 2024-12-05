@@ -25,6 +25,7 @@ export interface ITool {
 	handleRequest: ToolRequestHandler;
 	/** Tool can be used by all agents when set to true. */
 	readonly IsGlobal: boolean;
+	isIncluded(tools: ITool[]): boolean;
 }
 
 export interface IAgent extends ITool {
@@ -37,6 +38,7 @@ export interface IAgent extends ITool {
 
 export interface IOrchestrator extends EventEmitter {
 	readonly Instructions: string;
+	readonly strategy: IOrchestrationStrategy;
 	getAgentsDetails(): string;
 	run(instructions: string): Promise<number>;
 }
@@ -65,4 +67,9 @@ export function isTaskSnapshot(obj: any): obj is TaskSnapshot {
 		'id' in obj &&
 		typeof obj.id === 'string'
 	);
+}
+
+export interface IOrchestrationStrategy {
+	getSystemPrompt(orchestrator: IOrchestrator): string;
+	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string;
 }

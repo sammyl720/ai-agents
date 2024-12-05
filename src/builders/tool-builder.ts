@@ -2,7 +2,6 @@ import { Tool } from '../tools/tool.js';
 import type {
 	IBuilder,
 	ITool,
-	MessageToolCall,
 	ToolDefinition,
 	ToolRequestHandler,
 } from '../types.js';
