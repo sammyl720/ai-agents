@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import EventEmitter from 'events';
 import {
 	isTaskSnapshot,
 	type IAgent,
@@ -11,7 +12,7 @@ import {
 import type { ChatCompletionTool } from 'openai/resources/index.mjs';
 import { MessageHandler } from '../message-handler/message-handler.js';
 import type { IMessageRunner } from '../message-runner/message-runner.js';
-import { DEFAULT_OPENAI_MODEL } from '../consts.js';
+import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL } from '../consts.js';
 
 export const AgentInitConfiguration = z.object({
 	name: z.string().regex(new RegExp('^[a-zA-Z0-9_- ]{5,25}$')),
@@ -28,7 +29,7 @@ export type AgentInitConfig = {
 	model?: string;
 };
 
-export class Agent implements IAgent {
+export class Agent extends EventEmitter implements IAgent {
 	readonly name!: string;
 	readonly description!: string;
 	readonly IsGlobal = false;
@@ -51,6 +52,7 @@ export class Agent implements IAgent {
 		configuration: AgentInitConfig,
 		private tools: ITool[] = [],
 	) {
+		super();
 		this.allTools = [...tools];
 		const config = AgentInitConfiguration.parse(configuration);
 		this.name = config.name;
@@ -100,6 +102,9 @@ export class Agent implements IAgent {
 			this.tools,
 		);
 		response.content = newMessage?.content?.toString() ?? 'No response';
+		if (!!newMessage?.content) {
+			this.emit(AGENT_UPDATE_EVENT, `${this.name}: ${newMessage.content.toString()}`);
+		}
 		return response;
 	}
 

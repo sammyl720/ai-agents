@@ -29,7 +29,7 @@ export interface ITool {
 	isIncluded(tools: ITool[]): boolean;
 }
 
-export interface IAgent extends ITool {
+export interface IAgent extends EventEmitter, ITool {
 	initialize(orchestrator: IOrchestrator): void;
 	getGlobalTools(): ITool[];
 	addGlobalTool(tool: ITool): void;

@@ -7,7 +7,7 @@ import type {
 } from '../types.js';
 import { MessageHandler } from '../message-handler/message-handler.js';
 import { MessageRunner } from '../message-runner/message-runner.js';
-import { DEFAULT_OPENAI_MODEL } from '../consts.js';
+import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL, ORCHESTRATOR_COMPLETED_EVENT, ORCHESTRATOR_UPDATE_EVENT } from '../consts.js';
 import EventEmitter from 'events';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 
@@ -17,6 +17,8 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private globalTools: ITool[] = [];
 	private isRunning = false;
 	private result: any = null;
+	private agentUpdateListener = (update: any) => this.emit(AGENT_UPDATE_EVENT,update);
+
 
 	constructor(
 		private openai: OpenAI,
@@ -44,6 +46,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		this.agents.forEach((agent) => {
 			this.addGlobalTools(agent);
 			agent.initialize(this);
+			agent.on(AGENT_UPDATE_EVENT, this.agentUpdateListener);
 		});
 
 		this.registerGlobalToolsWithAgents();
@@ -62,20 +65,28 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		this.isRunning = true;
 		let currentMesage = await runner.run(this.messageHandler, tools);
 		while (this.isRunning && currentMesage != null) {
-			this.emit('message', currentMesage);
+			this.emit(ORCHESTRATOR_UPDATE_EVENT, currentMesage);
 			this.messageHandler.addMessage(currentMesage);
 			currentMesage = await runner.run(this.messageHandler, tools);
 		}
 
+		this.removeAgentListener();
+		this.removeAllListeners();
 		this.isRunning = false;
 
 		return 0;
 	}
 
+	removeAgentListener() {
+		this.agents.forEach(agent => {
+			agent.off(AGENT_UPDATE_EVENT, this.agentUpdateListener);
+		});
+	}
+
 	setCompletionResult(result: any) {
 		this.isRunning = false;
 		this.result = result;
-		this.emit('completed', result);
+		this.emit(ORCHESTRATOR_COMPLETED_EVENT, result);
 	}
 
 	private registerGlobalToolsWithAgents() {
