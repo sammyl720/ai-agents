@@ -1,2 +1,2 @@
-export * from './tool-handler.js';
+export * from './tool-runner.js';
 export * from './tool.js';

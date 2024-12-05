@@ -15,16 +15,22 @@ export interface IBuilder<T> {
 }
 
 export interface ITool {
+	readonly toolName: string;
 	readonly definition: ToolDefinition;
 	canHandleRequest(request: MessageToolCall): boolean;
 	handleRequest(
 		request: MessageToolCall,
 	): Promise<MessageToolCompletion> | MessageToolCompletion;
+	/** Tool can be used by all agents when set to true. */
+	readonly IsGlobal: boolean;
 }
 
 export interface IAgent extends ITool {
 	initialize(orchestrator: IOrchestrator): void;
+	getGlobalTools(): ITool[];
+	addGlobalTool(tool: ITool): void;
 	readonly AgentDetails: string;
+	readonly IsGlobal: false;
 }
 
 export interface IOrchestrator extends EventEmitter {

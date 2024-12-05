@@ -9,7 +9,7 @@ import type {
 	ITool,
 	MessageToolCompletion,
 } from '../types.js';
-import { ToolRunner } from '../tools/tool-handler.js';
+import { ToolRunner } from '../tools/tool-runner.js';
 
 export interface IMessageRunner {
 	run(

@@ -31,9 +31,11 @@ export type AgentInitConfig = {
 export class Agent implements IAgent {
 	readonly name!: string;
 	readonly description!: string;
+	readonly IsGlobal = false;
 
 	private readonly model = DEFAULT_OPENAI_MODEL;
 	private messageHandler = new MessageHandler();
+	private allTools: ITool[] = [];
 
 	get definition() {
 		return this.agentDefinition;
@@ -49,6 +51,7 @@ export class Agent implements IAgent {
 		configuration: AgentInitConfig,
 		private tools: ITool[] = [],
 	) {
+		this.allTools = [...tools];
 		const config = AgentInitConfiguration.parse(configuration);
 		this.name = config.name;
 		this.description = config.description;
@@ -60,6 +63,16 @@ export class Agent implements IAgent {
 			role: 'system',
 			content: this.getSystemPrompt(orchestrator),
 		});
+	}
+
+	addGlobalTool(tool: ITool) {
+		const isToolRegistered = this.allTools.some(t => t.definition.function.name)
+		if (this.isToolRegistered(tool))
+		{
+			return;
+		}
+
+		this.allTools.push(tool);
 	}
 
 	canHandleRequest(request: MessageToolCall): boolean {
@@ -89,6 +102,10 @@ export class Agent implements IAgent {
 		return response;
 	}
 
+	getGlobalTools(): ITool[] {
+		return this.tools.filter(tool => tool.IsGlobal);
+	}
+
 	addTaskMessage(task: TaskSnapshot) {
 		const messageContent = `Complete the following task:
         Task Id: ${task.id}
@@ -100,7 +117,15 @@ export class Agent implements IAgent {
 		});
 	}
 
-	private async run() {}
+	private isToolRegistered(tool: ITool) {
+		const toolName = tool.definition.function.name;
+		if (toolName === this.toolName)
+		{
+			return true;
+		}
+
+		return this.allTools.some(t => t.toolName === toolName);
+	}
 
 	private get agentDefinition(): ChatCompletionTool {
 		return {
