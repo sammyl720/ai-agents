@@ -13,10 +13,10 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	constructor(
 		private openai: OpenAI,
 		private agents: IAgent[],
-		private tools: ITool[] = []
+		private tools: ITool[] = [],
 	) {
 		super();
-		this.globalTools = tools.filter(tool => tool.IsGlobal);
+		this.globalTools = tools.filter((tool) => tool.IsGlobal);
 	}
 
 	getAgentsDetails(): string {
@@ -36,7 +36,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 			this.addGlobalTools(agent);
 			agent.initialize(this);
 		});
-		
+
 		this.registerGlobalToolsWithAgents();
 		this.messageHandler.addMessage({
 			role: 'system',
@@ -45,7 +45,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 
 		const runner = new MessageRunner(this.openai, DEFAULT_OPENAI_MODEL);
 		const tools = [...this.agents, ...this.globalTools];
-	
+
 		let currentMesage = await runner.run(this.messageHandler, tools);
 		while (currentMesage != null) {
 			this.emit('message', currentMesage);
@@ -56,7 +56,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		return 0;
 	}
 	private registerGlobalToolsWithAgents() {
-		this.agents.forEach(agent => {
+		this.agents.forEach((agent) => {
 			for (const tool of this.globalTools) {
 				agent.addGlobalTool(tool);
 			}
@@ -81,13 +81,16 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	}
 
 	private addGlobalTools(agent: IAgent) {
-		const globalTools = agent.getGlobalTools()
-			.filter(tool => this.isGlobalToolRegistered(tool));
-		this.globalTools = [...this.globalTools, ...globalTools];	
+		const globalTools = agent
+			.getGlobalTools()
+			.filter((tool) => this.isGlobalToolRegistered(tool));
+		this.globalTools = [...this.globalTools, ...globalTools];
 	}
 
 	private isGlobalToolRegistered(tool: ITool) {
 		const toolName = tool.definition.function.name;
-		return this.globalTools.some(t => t.definition.function.name === toolName);
+		return this.globalTools.some(
+			(t) => t.definition.function.name === toolName,
+		);
 	}
 }

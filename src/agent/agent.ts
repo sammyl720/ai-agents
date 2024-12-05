@@ -66,9 +66,10 @@ export class Agent implements IAgent {
 	}
 
 	addGlobalTool(tool: ITool) {
-		const isToolRegistered = this.allTools.some(t => t.definition.function.name)
-		if (this.isToolRegistered(tool))
-		{
+		const isToolRegistered = this.allTools.some(
+			(t) => t.definition.function.name,
+		);
+		if (this.isToolRegistered(tool)) {
 			return;
 		}
 
@@ -103,7 +104,7 @@ export class Agent implements IAgent {
 	}
 
 	getGlobalTools(): ITool[] {
-		return this.tools.filter(tool => tool.IsGlobal);
+		return this.tools.filter((tool) => tool.IsGlobal);
 	}
 
 	addTaskMessage(task: TaskSnapshot) {
@@ -119,12 +120,11 @@ export class Agent implements IAgent {
 
 	private isToolRegistered(tool: ITool) {
 		const toolName = tool.definition.function.name;
-		if (toolName === this.toolName)
-		{
+		if (toolName === this.toolName) {
 			return true;
 		}
 
-		return this.allTools.some(t => t.toolName === toolName);
+		return this.allTools.some((t) => t.toolName === toolName);
 	}
 
 	private get agentDefinition(): ChatCompletionTool {

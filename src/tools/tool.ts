@@ -4,7 +4,7 @@ export class Tool implements ITool {
 	constructor(
 		public readonly definition: ITool['definition'],
 		public handleRequest: ITool['handleRequest'],
-		public readonly IsGlobal = false
+		public readonly IsGlobal = false,
 	) {}
 
 	public canHandleRequest(request: MessageToolCall) {

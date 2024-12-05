@@ -14,13 +14,15 @@ export interface IBuilder<T> {
 	isBuildable: () => boolean;
 }
 
+export type ToolRequestHandler = (
+	request: MessageToolCall,
+) => Promise<MessageToolCompletion> | MessageToolCompletion;
+
 export interface ITool {
 	readonly toolName: string;
 	readonly definition: ToolDefinition;
 	canHandleRequest(request: MessageToolCall): boolean;
-	handleRequest(
-		request: MessageToolCall,
-	): Promise<MessageToolCompletion> | MessageToolCompletion;
+	handleRequest: ToolRequestHandler;
 	/** Tool can be used by all agents when set to true. */
 	readonly IsGlobal: boolean;
 }
