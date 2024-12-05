@@ -15,6 +15,8 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private instructions = '';
 	private messageHandler = new MessageHandler();
 	private globalTools: ITool[] = [];
+	private isRunning = false;
+	private result: any = null;
 
 	constructor(
 		private openai: OpenAI,
@@ -51,17 +53,31 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		});
 
 		const runner = new MessageRunner(this.openai, DEFAULT_OPENAI_MODEL);
-		const tools = [...this.agents, ...this.globalTools];
+		const tools = [
+			...this.agents,
+			...this.globalTools,
+			this.strategy.getOnCompleteTool(this),
+		];
 
+		this.isRunning = true;
 		let currentMesage = await runner.run(this.messageHandler, tools);
-		while (currentMesage != null) {
+		while (this.isRunning && currentMesage != null) {
 			this.emit('message', currentMesage);
 			this.messageHandler.addMessage(currentMesage);
 			currentMesage = await runner.run(this.messageHandler, tools);
 		}
 
+		this.isRunning = false;
+
 		return 0;
 	}
+
+	setCompletionResult(result: any) {
+		this.isRunning = false;
+		this.result = result;
+		this.emit('completed', result);
+	}
+
 	private registerGlobalToolsWithAgents() {
 		this.agents.forEach((agent) => {
 			for (const tool of this.globalTools) {

@@ -1,5 +1,6 @@
 import type OpenAI from 'openai';
 import EventEmitter from 'events';
+import type { z } from 'zod';
 
 export type ToolDefinition = OpenAI.Chat.Completions.ChatCompletionTool;
 export type MessageToolCall =
@@ -41,6 +42,7 @@ export interface IOrchestrator extends EventEmitter {
 	readonly strategy: IOrchestrationStrategy;
 	getAgentsDetails(): string;
 	run(instructions: string): Promise<number>;
+	setCompletionResult<T>(result: T | string): void;
 }
 
 export interface IToolBox {
@@ -72,4 +74,5 @@ export function isTaskSnapshot(obj: any): obj is TaskSnapshot {
 export interface IOrchestrationStrategy {
 	getSystemPrompt(orchestrator: IOrchestrator): string;
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string;
+	getOnCompleteTool(orchestrator: IOrchestrator): ITool;
 }
