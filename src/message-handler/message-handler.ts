@@ -1,24 +1,29 @@
-import OpenAI from "openai";
+import OpenAI from 'openai';
 
-export type CompletionMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam;
+export type CompletionMessage =
+	OpenAI.Chat.Completions.ChatCompletionMessageParam;
+export type AssistantCompletionMessage =
+	OpenAI.Chat.Completions.ChatCompletionAssistantMessageParam;
+export type CompletionMessageToolCalls =
+	OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
 
 export class MessageHandler {
-    private messages: CompletionMessage[] = [];
+	private messages: CompletionMessage[] = [];
 
-    addMessages(messages: CompletionMessage[]) {
-        return messages.reduce((self, current) => self.addMessage(current), this);
-    }
+	addMessages(messages: CompletionMessage[]) {
+		return messages.reduce((self, current) => self.addMessage(current), this);
+	}
 
-    addMessage(message: CompletionMessage) {
-        this.messages.push(message);
-        return this;
-    }
+	addMessage(message: CompletionMessage) {
+		this.messages.push(message);
+		return this;
+	}
 
-    getMessages() {
-        return structuredClone(this.messages);
-    }
+	getMessages() {
+		return structuredClone(this.messages);
+	}
 
-    getLastMessage() {
-        return this.getMessages().pop();
-    }
+	getLastMessage() {
+		return this.getMessages().pop();
+	}
 }
