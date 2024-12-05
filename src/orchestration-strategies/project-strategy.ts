@@ -6,8 +6,8 @@ import type {
 	IOrchestrator,
 	ITool,
 	MessageToolCall,
+	MessageToolCompletion,
 } from '../types.js';
-import type { ChatCompletionToolMessageParam } from 'openai/src/resources/chat/index.js';
 
 export const ProjectCompletionParser = z.object({
 	summary: z.string(),
@@ -103,7 +103,7 @@ export class ProjectStrategy implements IOrchestrationStrategy {
 				function: { arguments: result },
 				id,
 			} = request;
-			const response: ChatCompletionToolMessageParam = {
+			const response: MessageToolCompletion = {
 				tool_call_id: id,
 				role: 'tool',
 				content: 'Project result recorded. No new messages are needed.',

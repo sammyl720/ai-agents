@@ -1,2 +1,2 @@
-export * from './tool-runner.js';
-export * from './tool.js';
+export { ToolRunner } from './tool-runner.js';
+export { Tool } from './tool.js';

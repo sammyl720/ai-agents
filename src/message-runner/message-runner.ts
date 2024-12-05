@@ -1,14 +1,9 @@
-import type OpenAI from 'openai';
+import { OpenAI } from 'openai';
 import type {
 	CompletionMessage,
-	CompletionMessageToolCalls,
 	MessageHandler,
 } from '../message-handler/message-handler.js';
-import type {
-	CreateChatParams,
-	ITool,
-	MessageToolCompletion,
-} from '../types.js';
+import type { CreateChatParams, ITool } from '../types.js';
 import { ToolRunner } from '../tools/tool-runner.js';
 
 export interface IMessageRunner {

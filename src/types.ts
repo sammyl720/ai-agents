@@ -1,6 +1,5 @@
-import type OpenAI from 'openai';
+import { OpenAI } from 'openai';
 import EventEmitter from 'events';
-import type { z } from 'zod';
 
 export type ToolDefinition = OpenAI.Chat.Completions.ChatCompletionTool;
 export type MessageToolCall =

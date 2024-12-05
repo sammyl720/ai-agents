@@ -1,4 +1,4 @@
-import type OpenAI from 'openai';
+import { OpenAI } from 'openai';
 import type {
 	IAgent,
 	IBuilder,

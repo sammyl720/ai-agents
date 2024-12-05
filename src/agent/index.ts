@@ -1,1 +1,5 @@
-export * from './agent.js';
+export {
+	Agent,
+	type AgentInitConfig,
+	AgentInitConfiguration,
+} from './agent.js';

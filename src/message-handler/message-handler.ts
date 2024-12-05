@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+import { OpenAI } from 'openai';
 
 export type CompletionMessage =
 	OpenAI.Chat.Completions.ChatCompletionMessageParam;

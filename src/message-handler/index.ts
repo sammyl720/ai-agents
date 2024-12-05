@@ -1,1 +1,1 @@
-export * from './message-handler.js';
+export { MessageHandler } from './message-handler.js';

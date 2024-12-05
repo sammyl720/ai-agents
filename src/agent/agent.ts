@@ -9,7 +9,7 @@ import {
 	type MessageToolCompletion,
 	type TaskSnapshot,
 } from '../types.js';
-import type { ChatCompletionTool } from 'openai/resources/index.mjs';
+import { OpenAI } from 'openai';
 import { MessageHandler } from '../message-handler/message-handler.js';
 import type { IMessageRunner } from '../message-runner/message-runner.js';
 import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL } from '../consts.js';
@@ -139,7 +139,7 @@ export class Agent extends EventEmitter implements IAgent {
 		return this.allTools.some((t) => t.toolName === toolName);
 	}
 
-	private get agentDefinition(): ChatCompletionTool {
+	private get agentDefinition(): OpenAI.Chat.Completions.ChatCompletionTool {
 		return {
 			type: 'function',
 			function: {
