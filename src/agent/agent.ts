@@ -7,14 +7,13 @@ import {
 	type MessageToolCall,
 	type MessageToolCompletion,
 	type TaskSnapshot,
-	type ToolDefinition,
 } from '../types.js';
 import type { ChatCompletionTool } from 'openai/resources/index.mjs';
 import { MessageHandler } from '../message-handler/message-handler.js';
 import type { IMessageRunner } from '../message-runner/message-runner.js';
 import { DEFAULT_OPENAI_MODEL } from '../consts.js';
 
-const AgentInitConfiguration = z.object({
+export const AgentInitConfiguration = z.object({
 	name: z.string().regex(new RegExp('^[a-zA-Z0-9_- ]{5,25}$')),
 	description: z.string().min(20).max(500),
 	model: z.string().default(DEFAULT_OPENAI_MODEL),
@@ -25,7 +24,8 @@ export type AgentInitConfig = {
 	name: string;
 	/** Details about what the agent purpose is and what it can do. Must be between 20 and 500 characters long. */
 	description: string;
-	/** Openai modal to use. */
+	/** Openai model to use. */
+	model?: string;
 };
 
 export class Agent implements IAgent {

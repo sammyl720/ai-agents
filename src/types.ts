@@ -9,6 +9,11 @@ export type MessageToolCompletion =
 export type CreateChatParams =
 	OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming;
 
+export interface IBuilder<T> {
+	build: () => T;
+	isBuildable: () => boolean;
+}
+
 export interface ITool {
 	readonly definition: ToolDefinition;
 	canHandleRequest(request: MessageToolCall): boolean;
@@ -25,6 +30,7 @@ export interface IAgent extends ITool {
 export interface IOrchestrator extends EventEmitter {
 	readonly Instructions: string;
 	getAgentsDetails(): string;
+	run(instructions: string): Promise<number>;
 }
 
 export interface IToolBox {
