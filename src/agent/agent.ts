@@ -103,7 +103,10 @@ export class Agent extends EventEmitter implements IAgent {
 		);
 		response.content = newMessage?.content?.toString() ?? 'No response';
 		if (!!newMessage?.content) {
-			this.emit(AGENT_UPDATE_EVENT, `${this.name}: ${newMessage.content.toString()}`);
+			this.emit(
+				AGENT_UPDATE_EVENT,
+				`${this.name}: ${newMessage.content.toString()}`,
+			);
 		}
 		return response;
 	}

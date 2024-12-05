@@ -7,7 +7,12 @@ import type {
 } from '../types.js';
 import { MessageHandler } from '../message-handler/message-handler.js';
 import { MessageRunner } from '../message-runner/message-runner.js';
-import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL, ORCHESTRATOR_COMPLETED_EVENT, ORCHESTRATOR_UPDATE_EVENT } from '../consts.js';
+import {
+	AGENT_UPDATE_EVENT,
+	DEFAULT_OPENAI_MODEL,
+	ORCHESTRATOR_COMPLETED_EVENT,
+	ORCHESTRATOR_UPDATE_EVENT,
+} from '../consts.js';
 import EventEmitter from 'events';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 
@@ -17,8 +22,8 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private globalTools: ITool[] = [];
 	private isRunning = false;
 	private result: any = null;
-	private agentUpdateListener = (update: any) => this.emit(AGENT_UPDATE_EVENT,update);
-
+	private agentUpdateListener = (update: any) =>
+		this.emit(AGENT_UPDATE_EVENT, update);
 
 	constructor(
 		private openai: OpenAI,
@@ -78,7 +83,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	}
 
 	removeAgentListener() {
-		this.agents.forEach(agent => {
+		this.agents.forEach((agent) => {
 			agent.off(AGENT_UPDATE_EVENT, this.agentUpdateListener);
 		});
 	}
