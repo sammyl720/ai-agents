@@ -18,7 +18,7 @@ import {
 	DEFAULT_OPENAI_MODEL,
 } from '@consts';
 import { AgentInitConfiguration, ProjectUpdateParser } from '@parsers';
-import { Task } from 'src/tasks/task.js';
+import { Task } from '../tasks/task.js';
 import type { TypeOf } from 'zod';
 
 export class Agent extends EventEmitter implements IAgent {

@@ -52,3 +52,5 @@ export interface IOrchestrationStrategy {
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string;
 	getOrchestratorTools(orchestrator: IOrchestrator): Iterable<ITool>;
 }
+
+export type CompletionResult = z.infer<typeof ProjectCompletionParser>;
