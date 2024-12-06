@@ -2,14 +2,14 @@ import { replaceInFile } from 'replace-in-file';
 
 // Define your aliases and their replacements
 const aliasMappings = {
-	'@definitions': './src/types/index.js',
-	'@builders': './src/builders/index.js',
-	'@agent': './src/agent/index.js',
-	'@tools': './src/tools/index.js',
-	'@message-handler': './src/message-handler/index.js',
-	'@message-runner': './src/message-runner/index.js',
-	'@consts': './src/consts.js',
-	'@parsers': './src/parsers/index.js',
+	'@definitions': '../types/index.js',
+	'@builders': '../builders/index.js',
+	'@agent': '../agent/index.js',
+	'@tools': '../tools/index.js',
+	'@message-handler': '../message-handler/index.js',
+	'@message-runner': '../message-runner/index.js',
+	'@consts': '../consts.js',
+	'@parsers': '../parsers/index.js',
 };
 
 // Convert alias mappings into an array of `from` and `to`

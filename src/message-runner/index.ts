@@ -6,7 +6,7 @@ import type {
 	ITool,
 } from '@definitions';
 import { ToolRunner } from '@tools';
-import { DEFAULT_OPENAI_MODEL } from 'src/consts.js';
+import { DEFAULT_OPENAI_MODEL } from '@consts';
 
 export interface IMessageRunner {
 	run(
