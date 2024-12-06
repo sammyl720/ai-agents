@@ -5,6 +5,7 @@ import type {
 	ToolDefinition,
 } from './openai.js';
 import type { IAgent } from '@definitions';
+import type { IMessageRunner } from '@message-runner';
 
 export type ToolRequestHandler = (
 	request: MessageToolCall,
@@ -26,6 +27,7 @@ export interface IOrchestrator extends EventEmitter {
 	getAgentsDetails(): string;
 	run(instructions: string): Promise<number>;
 	setCompletionResult<T>(result: T | string): void;
+	getMessageRunner(): IMessageRunner;
 }
 
 export interface IToolBox {
@@ -39,7 +41,6 @@ export interface IToolBox {
 
 export type TaskSnapshot = {
 	description: string;
-	id: string;
 	additionalContext?: string;
 };
 
@@ -48,9 +49,7 @@ export function isTaskSnapshot(obj: any): obj is TaskSnapshot {
 		typeof obj === 'object' &&
 		obj !== null &&
 		'description' in obj &&
-		typeof obj.description === 'string' &&
-		'id' in obj &&
-		typeof obj.id === 'string'
+		typeof obj.description === 'string'
 	);
 }
 

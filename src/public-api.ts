@@ -4,3 +4,4 @@ export * from './orchestration-strategies/project-strategy.js';
 export * from './orchestrator/index.js';
 export * from './tools/index.js';
 export * from './consts.js';
+export * from './types/index.js';

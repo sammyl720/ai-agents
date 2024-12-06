@@ -19,11 +19,7 @@ export class AgentBuilder implements IBuilder<IAgent> {
 				`Please pass in your OPENAI client first to the  AgentBuilder.addOpenAIClient(client) method.`,
 			);
 		}
-		return new Agent(
-			new MessageRunner(this.openAI, config.model),
-			config,
-			this.tools,
-		);
+		return new Agent(config, this.tools);
 	}
 
 	isBuildable() {

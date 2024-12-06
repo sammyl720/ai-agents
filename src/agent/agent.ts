@@ -12,8 +12,13 @@ import {
 import { OpenAI } from 'openai';
 import { MessageHandler } from '@message-handler';
 import type { IMessageRunner } from '@message-runner';
-import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL } from '@consts';
+import {
+	AGENT_TASK_INPROGRESS,
+	AGENT_TASK_COMPLETED,
+	DEFAULT_OPENAI_MODEL,
+} from '@consts';
 import { AgentInitConfiguration } from '@parsers';
+import { Task } from 'src/tasks/task.js';
 
 export class Agent extends EventEmitter implements IAgent {
 	readonly name!: string;
@@ -23,6 +28,8 @@ export class Agent extends EventEmitter implements IAgent {
 	private readonly model = DEFAULT_OPENAI_MODEL;
 	private messageHandler = new MessageHandler();
 	private allTools: ITool[] = [];
+	private currentTask: Task | null = null;
+	private messageRunner: IMessageRunner | null = null;
 
 	get definition() {
 		return this.agentDefinition;
@@ -34,7 +41,6 @@ export class Agent extends EventEmitter implements IAgent {
 	}
 
 	constructor(
-		private messageRunner: IMessageRunner,
 		configuration: AgentInitConfig,
 		private tools: ITool[] = [],
 	) {
@@ -47,6 +53,7 @@ export class Agent extends EventEmitter implements IAgent {
 
 	initialize(orchestrator: IOrchestrator) {
 		this.messageHandler = new MessageHandler();
+		this.messageRunner = orchestrator.getMessageRunner();
 		this.messageHandler.addMessage({
 			role: 'system',
 			content: orchestrator.strategy.getAgentPrompt(orchestrator, this),
@@ -81,18 +88,23 @@ export class Agent extends EventEmitter implements IAgent {
 		if (!this.canHandleRequest(request) || !isTaskSnapshot(payload)) {
 			response.content = `{ "error": "Tool name or payload is invalid" }`;
 			return response;
+		} else if (this.messageRunner === null) {
+			this.currentTask?.abort('No MessageRunner supplied');
+			this.emit(AGENT_TASK_COMPLETED, this.currentTask);
+			response.content = `{ "error": "Agent is not available." }`;
+			return response;
 		}
+
 		this.addTaskMessage(payload);
+
 		const newMessage = await this.messageRunner.run(
 			this.messageHandler,
 			this.tools,
 		);
 		response.content = newMessage?.content?.toString() ?? 'No response';
+		this.currentTask?.complete(response.content);
 		if (!!newMessage?.content) {
-			this.emit(
-				AGENT_UPDATE_EVENT,
-				`${this.name}: ${newMessage.content.toString()}`,
-			);
+			this.emit(AGENT_TASK_COMPLETED, this.currentTask);
 		}
 		return response;
 	}
@@ -105,15 +117,24 @@ export class Agent extends EventEmitter implements IAgent {
 		return this.tools.filter((tool) => tool.IsGlobal);
 	}
 
-	addTaskMessage(task: TaskSnapshot) {
+	addTaskMessage(taskSnapshot: TaskSnapshot) {
+		this.currentTask = this.assignTask(taskSnapshot);
+
 		const messageContent = `Complete the following task:
-        Task Id: ${task.id}
-        Task Description: ${task.description}\n
-        Additional Context: ${task.additionalContext ?? 'None'}`;
+        Task Id: ${this.currentTask.id}
+        Task Description: ${this.currentTask.description}\n
+        Additional Context: ${this.currentTask.additionalContext ?? 'None'}`;
 		this.messageHandler.addMessage({
 			role: 'system',
 			content: messageContent,
 		});
+
+		this.emit(AGENT_TASK_INPROGRESS, this.currentTask);
+	}
+
+	private assignTask({ description, additionalContext }: TaskSnapshot) {
+		const task = new Task(description, additionalContext);
+		return task.assign(this);
 	}
 
 	private isToolRegistered(tool: ITool) {
@@ -143,10 +164,6 @@ export class Agent extends EventEmitter implements IAgent {
 							type: 'string',
 							description:
 								'A string with valid json to provide any additional context that could be useful.',
-						},
-						id: {
-							type: 'string',
-							description: 'The id associated with this task.',
 						},
 					},
 					additionalProperties: false,

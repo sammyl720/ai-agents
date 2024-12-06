@@ -6,15 +6,17 @@ import type {
 	ITool,
 } from '@definitions';
 import { MessageHandler } from '@message-handler';
-import { MessageRunner } from '@message-runner';
+import { MessageRunner, type IMessageRunner } from '@message-runner';
 import {
-	AGENT_UPDATE_EVENT,
+	AGENT_TASK_COMPLETED,
+	AGENT_TASK_INPROGRESS,
 	DEFAULT_OPENAI_MODEL,
 	ORCHESTRATOR_COMPLETED_EVENT,
 	ORCHESTRATOR_UPDATE_EVENT,
 } from '../consts.js';
 import EventEmitter from 'events';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
+import type { Task } from 'src/tasks/task.js';
 
 export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private instructions = '';
@@ -22,8 +24,11 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private globalTools: ITool[] = [];
 	private isRunning = false;
 	private result: any = null;
-	private agentUpdateListener = (update: any) =>
-		this.emit(AGENT_UPDATE_EVENT, update);
+	private agentStartedListener = (update: Task) =>
+		this.emit(AGENT_TASK_INPROGRESS, update);
+	private agentCompletedListener = (update: Task) => {
+		this.emit(AGENT_TASK_COMPLETED, update);
+	};
 
 	constructor(
 		private openai: AI,
@@ -41,6 +46,10 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		}, '');
 	}
 
+	getMessageRunner(): IMessageRunner {
+		return new MessageRunner(this.openai, DEFAULT_OPENAI_MODEL);
+	}
+
 	get Instructions() {
 		return this.instructions;
 	}
@@ -51,7 +60,8 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		this.agents.forEach((agent) => {
 			this.addGlobalTools(agent);
 			agent.initialize(this);
-			agent.on(AGENT_UPDATE_EVENT, this.agentUpdateListener);
+			agent.on(AGENT_TASK_INPROGRESS, this.agentStartedListener);
+			agent.on(AGENT_TASK_COMPLETED, this.agentCompletedListener);
 		});
 
 		this.registerGlobalToolsWithAgents();
@@ -84,7 +94,8 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 
 	removeAgentListener() {
 		this.agents.forEach((agent) => {
-			agent.off(AGENT_UPDATE_EVENT, this.agentUpdateListener);
+			agent.off(AGENT_TASK_INPROGRESS, this.agentStartedListener);
+			agent.off(AGENT_TASK_COMPLETED, this.agentCompletedListener);
 		});
 	}
 

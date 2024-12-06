@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import EventEmitter from 'events';
 import { Agent } from '@agent';
 
 import { randomUUID } from 'node:crypto';
@@ -17,7 +16,7 @@ export type TaskChangeDetails = {
 	Status: z.infer<typeof TaskStatus>;
 };
 
-export class Task extends EventEmitter implements TaskSnapshot {
+export class Task implements TaskSnapshot {
 	private status: z.infer<typeof TaskStatus> = TaskStatus.Enum.Open;
 	private result: string | null = null;
 	private abortReason: string | null = null;
@@ -46,10 +45,7 @@ export class Task extends EventEmitter implements TaskSnapshot {
 		public readonly description: string,
 		/** Optional: Additional context in the form of a json string. */
 		public readonly additionalContext: string = '{}',
-	) {
-		super();
-		this.emitStatusChange();
-	}
+	) {}
 
 	assign(agent: Agent) {
 		if (this.Status !== TaskStatus.Enum.Open) {
@@ -58,7 +54,6 @@ export class Task extends EventEmitter implements TaskSnapshot {
 
 		this.assignedAgent = agent;
 		this.status = TaskStatus.Enum.InProgress;
-		this.emitStatusChange();
 		return this;
 	}
 
@@ -70,18 +65,12 @@ export class Task extends EventEmitter implements TaskSnapshot {
 		this.status = TaskStatus.Enum.Completed;
 		this.result = result;
 		this.assignedAgent = null;
-		this.emitStatusChange();
 		return this;
 	}
 
 	abort(reason?: string) {
 		this.status = TaskStatus.Enum.Aborted;
 		this.abortReason = reason ?? 'No reason provided.';
-		this.emitStatusChange();
-	}
-
-	private emitStatusChange() {
-		this.emit<TaskChangeDetails>('statuschange');
 	}
 
 	toJSON() {
