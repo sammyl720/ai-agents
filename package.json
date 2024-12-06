@@ -20,7 +20,7 @@
 	"files": [
 		"dist"
 	],
-	"main": "dist/index.js",
+	"main": "dist/public-api.js",
 	"scripts": {
 		"test": "vitest run",
 		"build": "tsc",
