@@ -1,5 +1,5 @@
-import { OpenAI } from 'openai';
 import type {
+	AI,
 	IAgent,
 	IBuilder,
 	IOrchestrationStrategy,
@@ -10,7 +10,7 @@ import { Orchestrator } from '../orchestrator/orchestrator.js';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 
 export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
-	private openAI: OpenAI | null = null;
+	private openAI: AI | null = null;
 	private agents: IAgent[] = [];
 	private strategy: IOrchestrationStrategy = new ProjectStrategy();
 	private tools: ITool[] = [];
@@ -57,7 +57,7 @@ export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
 		return this;
 	}
 
-	setOpenAIClient(openAI: OpenAI) {
+	setOpenAIClient(openAI: AI) {
 		this.openAI = openAI;
 		return this;
 	}
