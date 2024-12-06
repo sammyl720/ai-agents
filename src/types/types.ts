@@ -6,6 +6,8 @@ import type {
 } from './openai.js';
 import type { IAgent } from '@definitions';
 import type { IMessageRunner } from '@message-runner';
+import { z } from 'zod';
+import type { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
 
 export type ToolRequestHandler = (
 	request: MessageToolCall,
@@ -26,17 +28,9 @@ export interface IOrchestrator extends EventEmitter {
 	readonly strategy: IOrchestrationStrategy;
 	getAgentsDetails(): string;
 	run(instructions: string): Promise<number>;
-	setCompletionResult<T>(result: T | string): void;
+	setCompletionResult(result: z.infer<typeof ProjectCompletionParser>): void;
+	notifyAllAgents(update: z.infer<typeof ProjectUpdateParser>): void;
 	getMessageRunner(): IMessageRunner;
-}
-
-export interface IToolBox {
-	addTool(tool: ITool): boolean;
-	getTools(): ITool[];
-	canDelegateRequest(
-		request: MessageToolCall,
-	): ReturnType<ITool['canHandleRequest']>;
-	deleteRequest(request: MessageToolCall): ReturnType<ITool['handleRequest']>;
 }
 
 export type TaskSnapshot = {
@@ -56,5 +50,5 @@ export function isTaskSnapshot(obj: any): obj is TaskSnapshot {
 export interface IOrchestrationStrategy {
 	getSystemPrompt(orchestrator: IOrchestrator): string;
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string;
-	getOnCompleteTool(orchestrator: IOrchestrator): ITool;
+	getOrchestratorTools(orchestrator: IOrchestrator): Iterable<ITool>
 }

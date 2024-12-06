@@ -17,8 +17,9 @@ import {
 	AGENT_TASK_COMPLETED,
 	DEFAULT_OPENAI_MODEL,
 } from '@consts';
-import { AgentInitConfiguration } from '@parsers';
+import { AgentInitConfiguration, ProjectUpdateParser } from '@parsers';
 import { Task } from 'src/tasks/task.js';
+import type { TypeOf } from 'zod';
 
 export class Agent extends EventEmitter implements IAgent {
 	readonly name!: string;
@@ -107,6 +108,13 @@ export class Agent extends EventEmitter implements IAgent {
 			this.emit(AGENT_TASK_COMPLETED, this.currentTask);
 		}
 		return response;
+	}
+
+	notify(update: TypeOf<typeof ProjectUpdateParser>): void {
+		this.messageHandler.addMessage({
+			role: 'system',
+			content: update.updateMessage
+		})
 	}
 
 	isIncluded(tools: ITool[]): boolean {

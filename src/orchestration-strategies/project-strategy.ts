@@ -8,17 +8,8 @@ import type {
 	MessageToolCall,
 	MessageToolCompletion,
 } from '@definitions';
+import { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
 
-export const ProjectCompletionParser = z.object({
-	summary: z.string(),
-	result: z.string(),
-	actionTaken: z.array(
-		z.object({
-			action: z.string(),
-			result: z.string(),
-		}),
-	),
-});
 
 export class ProjectStrategy implements IOrchestrationStrategy {
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string {
@@ -60,7 +51,56 @@ You have access to tools that allow you to delegate tasks to your team members.
 		return prompt;
 	}
 
-	getOnCompleteTool(orchestrator: IOrchestrator): ITool {
+	getOrchestratorTools(orchestrator: IOrchestrator): Iterable<ITool> {
+		return [this.getUpdateAllAgentsTool(orchestrator), this.getOnCompleteTool(orchestrator)];
+	}
+
+	private getUpdateAllAgentsTool(orchestrator: IOrchestrator): ITool {
+		const toolBuilder = new ToolBuilder();
+
+		toolBuilder.setToolDefinition({
+			type: 'function',
+			function: {
+				name: 'provide_update_to_all_agents',
+				description: 'Broadcast an update message to all agents currently participating in the project.',
+				parameters: {
+				type: 'object',
+				properties: {
+					updateMessage: {
+					type: 'string',
+					description: 'A message containing the current status, progress, or changes that should be communicated to all agents.'
+					}
+				},
+				additionalProperties: false,
+				required: ['updateMessage']
+				}
+			}
+		});
+
+		toolBuilder.setToolRequestHandler((request: MessageToolCall) => {
+			const {
+				function: { arguments: result },
+				id,
+			} = request;
+			const response: MessageToolCompletion = {
+				tool_call_id: id,
+				role: 'tool',
+				content: 'Message broadcasted.',
+			};
+
+			try {
+				const completion = ProjectUpdateParser.parse(JSON.parse(result));
+				orchestrator.notifyAllAgents(completion);
+				return response;
+			} catch (error) {
+				response.content = JSON.stringify(error);
+				return response;
+			}
+		});
+		return toolBuilder.build();
+	}
+
+	private getOnCompleteTool(orchestrator: IOrchestrator): ITool {
 		const toolBuilder = new ToolBuilder();
 
 		toolBuilder.setToolDefinition({

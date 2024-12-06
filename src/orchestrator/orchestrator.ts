@@ -6,6 +6,7 @@ import type {
 	ITool,
 } from '@definitions';
 import { MessageHandler } from '@message-handler';
+import { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
 import { MessageRunner, type IMessageRunner } from '@message-runner';
 import {
 	AGENT_TASK_COMPLETED,
@@ -17,13 +18,14 @@ import {
 import EventEmitter from 'events';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 import type { Task } from 'src/tasks/task.js';
+import type { TypeOf } from 'zod';
 
 export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private instructions = '';
 	private messageHandler = new MessageHandler();
 	private globalTools: ITool[] = [];
 	private isRunning = false;
-	private result: any = null;
+	private result: TypeOf<typeof ProjectCompletionParser> | null = null;
 	private agentStartedListener = (update: Task) =>
 		this.emit(AGENT_TASK_INPROGRESS, update);
 	private agentCompletedListener = (update: Task) => {
@@ -74,7 +76,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		const tools = [
 			...this.agents,
 			...this.globalTools,
-			this.strategy.getOnCompleteTool(this),
+			...this.strategy.getOrchestratorTools(this),
 		];
 
 		this.isRunning = true;
@@ -99,10 +101,16 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		});
 	}
 
-	setCompletionResult(result: any) {
+	setCompletionResult(result: TypeOf<typeof ProjectCompletionParser>) {
 		this.isRunning = false;
 		this.result = result;
 		this.emit(ORCHESTRATOR_COMPLETED_EVENT, result);
+	}
+
+	notifyAllAgents(update: TypeOf<typeof ProjectUpdateParser>): void {
+		for (const agent of this.agents) {
+			agent.notify(update);
+		}
 	}
 
 	private registerGlobalToolsWithAgents() {
