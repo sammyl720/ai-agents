@@ -22,35 +22,42 @@ export const ProjectCompletionParser = z.object({
 
 export class ProjectStrategy implements IOrchestrationStrategy {
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string {
-		return `## You are an agent working within a team to complete a given goal.
-        
-        ### The following designations have been assigned to you: ${agent.AgentDetails}
+		const prompt = `
+## Role: You are an agent collaborating within a team to achieve a specific goal.
 
-        You be assigned tasks that are suited for you given your designation.
+### Your Designation:
+${agent.AgentDetails}
 
-        ### Agent's on your team
-        ${orchestrator.getAgentsDetails()}
-        
-        ### Your team has been given the following goal:
-        ${orchestrator.Instructions}
-        `;
+You will be assigned tasks that align with your designated role.
+
+### Other Team Members:
+${orchestrator.getAgentsDetails()}
+
+### The Team's Main Objective:
+${orchestrator.Instructions}
+`;
+
+		return prompt;
 	}
 
 	getSystemPrompt(orchestrator: IOrchestrator) {
-		return `## You are a project lead of a team of agents tasked to complete the following goal:
-        ${orchestrator.Instructions}
-        
-        #### Your responsibility as the project lead is as follows:
-        1. Create tasks aimed at achieving the aforementioned goal.
-        2. Delegate (i.e hand of tasks) to agents on the team .
-        3. Keep creating and delegating tasks until the goal is achieved or when, in the rear case, deemed unacheivable.
+		const prompt = `
+## Role: You are the project lead of a team of agents working toward the following goal:
+${orchestrator.Instructions}
 
-        You be assigned tasks that are suited for you given your designation.
+### Your Responsibilities as the Project Lead:
+1. Create tasks that directly contribute to achieving the stated goal.
+2. Delegate these tasks to the appropriate agents on the team.
+3. Continue creating and delegating tasks until the goal is achieved or it becomes clearly unachievable.
 
-        ### Agent's on your team
-        ${orchestrator.getAgentsDetails()}
-        
-        You've be suppled with tools to hand of tasks to agent's on your team.`;
+You will be assigned tasks that align with your role and designation.
+
+### Team Members:
+${orchestrator.getAgentsDetails()}
+
+You have access to tools that allow you to delegate tasks to your team members.
+`;
+		return prompt;
 	}
 
 	getOnCompleteTool(orchestrator: IOrchestrator): ITool {
