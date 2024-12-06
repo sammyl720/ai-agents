@@ -50,5 +50,5 @@ export function isTaskSnapshot(obj: any): obj is TaskSnapshot {
 export interface IOrchestrationStrategy {
 	getSystemPrompt(orchestrator: IOrchestrator): string;
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string;
-	getOrchestratorTools(orchestrator: IOrchestrator): Iterable<ITool>
+	getOrchestratorTools(orchestrator: IOrchestrator): Iterable<ITool>;
 }

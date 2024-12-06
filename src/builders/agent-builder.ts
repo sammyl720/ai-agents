@@ -1,8 +1,12 @@
-import { OpenAI } from 'openai';
 import { Agent } from '@agent';
 import { DEFAULT_OPENAI_MODEL } from '@consts';
-import type { AgentInitConfig, IAgent, IBuilder, ITool } from '@definitions';
-import { MessageRunner } from '@message-runner';
+import type {
+	AgentInitConfig,
+	AI,
+	IBuilder,
+	ITool,
+	IAgent,
+} from '@definitions';
 import { AgentInitConfiguration } from '@parsers';
 
 export class AgentBuilder implements IBuilder<IAgent> {
@@ -10,9 +14,9 @@ export class AgentBuilder implements IBuilder<IAgent> {
 	private description: AgentInitConfig['description'] = '';
 	private model?: string;
 	private tools: ITool[] = [];
-	private openAI: OpenAI | null = null;
+	private openAI: AI | null = null;
 
-	build() {
+	build(): Agent {
 		const config = AgentInitConfiguration.parse(this.config);
 		if (this.openAI === null) {
 			throw new Error(
@@ -53,7 +57,7 @@ export class AgentBuilder implements IBuilder<IAgent> {
 		return this;
 	}
 
-	addOpenAIClient(openAI: OpenAI) {
+	addOpenAIClient(openAI: AI) {
 		this.openAI = openAI;
 		return this;
 	}

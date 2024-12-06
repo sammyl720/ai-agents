@@ -10,7 +10,6 @@ import type {
 } from '@definitions';
 import { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
 
-
 export class ProjectStrategy implements IOrchestrationStrategy {
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string {
 		const prompt = `
@@ -52,7 +51,10 @@ You have access to tools that allow you to delegate tasks to your team members.
 	}
 
 	getOrchestratorTools(orchestrator: IOrchestrator): Iterable<ITool> {
-		return [this.getUpdateAllAgentsTool(orchestrator), this.getOnCompleteTool(orchestrator)];
+		return [
+			this.getUpdateAllAgentsTool(orchestrator),
+			this.getOnCompleteTool(orchestrator),
+		];
 	}
 
 	private getUpdateAllAgentsTool(orchestrator: IOrchestrator): ITool {
@@ -62,19 +64,21 @@ You have access to tools that allow you to delegate tasks to your team members.
 			type: 'function',
 			function: {
 				name: 'provide_update_to_all_agents',
-				description: 'Broadcast an update message to all agents currently participating in the project.',
+				description:
+					'Broadcast an update message to all agents currently participating in the project.',
 				parameters: {
-				type: 'object',
-				properties: {
-					updateMessage: {
-					type: 'string',
-					description: 'A message containing the current status, progress, or changes that should be communicated to all agents.'
-					}
+					type: 'object',
+					properties: {
+						updateMessage: {
+							type: 'string',
+							description:
+								'A message containing the current status, progress, or changes that should be communicated to all agents.',
+						},
+					},
+					additionalProperties: false,
+					required: ['updateMessage'],
 				},
-				additionalProperties: false,
-				required: ['updateMessage']
-				}
-			}
+			},
 		});
 
 		toolBuilder.setToolRequestHandler((request: MessageToolCall) => {

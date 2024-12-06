@@ -1,8 +1,7 @@
-import {z} from 'zod';
-
+import { z } from 'zod';
 
 export const ProjectUpdateParser = z.object({
-	updateMessage: z.string()
+	updateMessage: z.string(),
 });
 
 export const ProjectCompletionParser = z.object({

@@ -113,8 +113,8 @@ export class Agent extends EventEmitter implements IAgent {
 	notify(update: TypeOf<typeof ProjectUpdateParser>): void {
 		this.messageHandler.addMessage({
 			role: 'system',
-			content: update.updateMessage
-		})
+			content: update.updateMessage,
+		});
 	}
 
 	isIncluded(tools: ITool[]): boolean {
