@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		/* Base Options: */
+		"baseUrl": "./",
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"target": "es2022",
@@ -21,6 +22,14 @@
 		/* AND if you're building for a library: */
 		"declaration": true,
 		/* AND if you're building for a library in a monorepo: */
-		"declarationMap": true
+		"declarationMap": true,
+		"paths": {
+			"@definitions": ["src/types/index.js"],
+			"@builders/*": ["src/builders/*"],
+			"@tools": ["src/tools/index.js"],
+			"@message-handler": ["src/message-handler/index.js"],
+			"@message-runner": ["src/message-runner/message-runner.js"],
+			"@consts": ["src/consts.js"]
+		}
 	}
 }

@@ -7,7 +7,7 @@ import type {
 	ITool,
 	MessageToolCall,
 	MessageToolCompletion,
-} from '../types.js';
+} from '@definitions';
 
 export const ProjectCompletionParser = z.object({
 	summary: z.string(),

@@ -1,10 +1,10 @@
-import { Tool } from '../tools/tool.js';
+import { Tool } from '@tools';
 import type {
 	IBuilder,
 	ITool,
 	ToolDefinition,
 	ToolRequestHandler,
-} from '../types.js';
+} from '@definitions';
 
 export class ToolBuilder implements IBuilder<ITool> {
 	private definition: ToolDefinition | null = null;

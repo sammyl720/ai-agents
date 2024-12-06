@@ -1,11 +1,4 @@
-import { OpenAI } from 'openai';
-
-export type CompletionMessage =
-	OpenAI.Chat.Completions.ChatCompletionMessageParam;
-export type AssistantCompletionMessage =
-	OpenAI.Chat.Completions.ChatCompletionAssistantMessageParam;
-export type CompletionMessageToolCalls =
-	OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
+import type { CompletionMessage } from '@definitions';
 
 export class MessageHandler {
 	private messages: CompletionMessage[] = [];

@@ -1,4 +1,4 @@
-import type { ITool, MessageToolCall } from '../types.js';
+import type { ITool, MessageToolCall } from '@definitions';
 
 export class Tool implements ITool {
 	constructor(

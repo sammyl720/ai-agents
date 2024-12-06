@@ -4,9 +4,9 @@ import type {
 	IOrchestrationStrategy,
 	IOrchestrator,
 	ITool,
-} from '../types.js';
-import { MessageHandler } from '../message-handler/message-handler.js';
-import { MessageRunner } from '../message-runner/message-runner.js';
+} from '@definitions';
+import { MessageHandler } from '@message-handler';
+import { MessageRunner } from '@message-runner';
 import {
 	AGENT_UPDATE_EVENT,
 	DEFAULT_OPENAI_MODEL,

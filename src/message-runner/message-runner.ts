@@ -1,10 +1,12 @@
-import { OpenAI } from 'openai';
+import type { MessageHandler } from '@message-handler';
 import type {
+	AI,
 	CompletionMessage,
-	MessageHandler,
-} from '../message-handler/message-handler.js';
-import type { CreateChatParams, ITool } from '../types.js';
-import { ToolRunner } from '../tools/tool-runner.js';
+	CreateChatParams,
+	ITool,
+} from '@definitions';
+import { ToolRunner } from '@tools';
+import { DEFAULT_OPENAI_MODEL } from 'src/consts.js';
 
 export interface IMessageRunner {
 	run(
@@ -15,8 +17,8 @@ export interface IMessageRunner {
 
 export class MessageRunner implements IMessageRunner {
 	constructor(
-		private openai: OpenAI,
-		private model: string,
+		private openai: AI,
+		private model: string = DEFAULT_OPENAI_MODEL,
 	) {}
 
 	async run(

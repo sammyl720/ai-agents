@@ -4,9 +4,9 @@ import {
 	type AgentInitConfig,
 	Agent,
 } from '../agent/agent.js';
-import { DEFAULT_OPENAI_MODEL } from '../consts.js';
-import type { IAgent, IBuilder, ITool } from '../types.js';
-import { MessageRunner } from '../message-runner/message-runner.js';
+import { DEFAULT_OPENAI_MODEL } from '@consts';
+import type { IAgent, IBuilder, ITool } from '@definitions';
+import { MessageRunner } from '@message-runner';
 
 export class AgentBuilder implements IBuilder<IAgent> {
 	private name: AgentInitConfig['name'] = '';

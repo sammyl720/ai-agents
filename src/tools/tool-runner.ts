@@ -2,15 +2,16 @@ import { OpenAI } from 'openai';
 import type {
 	AssistantCompletionMessage,
 	CompletionMessage,
-	CompletionMessageToolCalls,
-} from '../message-handler/message-handler.js';
-import type { ITool, MessageToolCompletion } from '../types.js';
+	ITool,
+	MessageToolCall,
+	MessageToolCompletion,
+} from '@definitions';
 
 export class ToolRunner {
 	constructor(private tools: ITool[]) {}
 
 	public async run(
-		tool_calls: CompletionMessageToolCalls[],
+		tool_calls: MessageToolCall[],
 	): Promise<MessageToolCompletion[]> {
 		const results = await Promise.allSettled(
 			tool_calls.map(async (tool_call) => {
@@ -19,7 +20,10 @@ export class ToolRunner {
 			}),
 		);
 		return results
-			.filter((result) => result.status === 'fulfilled')
+			.filter(
+				(result): result is PromiseFulfilledResult<MessageToolCompletion> =>
+					result.status === 'fulfilled',
+			)
 			.map((result) => result.value);
 	}
 
@@ -32,7 +36,7 @@ export class ToolRunner {
 	}
 
 	private async handleToolCall(
-		tool_call: CompletionMessageToolCalls,
+		tool_call: MessageToolCall,
 	): Promise<OpenAI.Chat.Completions.ChatCompletionToolMessageParam> {
 		const tool = this.tools.find((t) => t.canHandleRequest(tool_call));
 		if (!!tool) {
@@ -53,9 +57,7 @@ export class ToolRunner {
 		return !!this.getToolCalls(message).length;
 	}
 
-	private getToolCalls(
-		message: CompletionMessage,
-	): CompletionMessageToolCalls[] {
+	private getToolCalls(message: CompletionMessage): MessageToolCall[] {
 		if (this.isAssistantMesage(message)) {
 			return message.tool_calls ?? [];
 		}

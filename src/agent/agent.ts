@@ -8,11 +8,11 @@ import {
 	type MessageToolCall,
 	type MessageToolCompletion,
 	type TaskSnapshot,
-} from '../types.js';
+} from '@definitions';
 import { OpenAI } from 'openai';
-import { MessageHandler } from '../message-handler/message-handler.js';
-import type { IMessageRunner } from '../message-runner/message-runner.js';
-import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL } from '../consts.js';
+import { MessageHandler } from '@message-handler';
+import type { IMessageRunner } from '@message-runner';
+import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL } from '@consts';
 
 export const AgentInitConfiguration = z.object({
 	name: z.string().regex(new RegExp('^[a-zA-Z0-9_- ]{5,25}$')),

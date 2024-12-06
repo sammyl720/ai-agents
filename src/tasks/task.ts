@@ -3,7 +3,7 @@ import EventEmitter from 'events';
 import { Agent } from '../agent/agent.js';
 
 import { randomUUID } from 'node:crypto';
-import type { TaskSnapshot } from '../types.js';
+import type { TaskSnapshot } from '@definitions';
 
 export const TaskStatus = z.enum([
 	'Open',

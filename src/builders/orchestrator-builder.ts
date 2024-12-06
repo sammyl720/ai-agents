@@ -5,7 +5,7 @@ import type {
 	IOrchestrationStrategy,
 	IOrchestrator,
 	ITool,
-} from '../types.js';
+} from '@definitions';
 import { Orchestrator } from '../orchestrator/orchestrator.js';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 

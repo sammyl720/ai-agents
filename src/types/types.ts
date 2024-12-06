@@ -1,18 +1,9 @@
-import { OpenAI } from 'openai';
 import EventEmitter from 'events';
-
-export type ToolDefinition = OpenAI.Chat.Completions.ChatCompletionTool;
-export type MessageToolCall =
-	OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
-export type MessageToolCompletion =
-	OpenAI.Chat.Completions.ChatCompletionToolMessageParam;
-export type CreateChatParams =
-	OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming;
-
-export interface IBuilder<T> {
-	build: () => T;
-	isBuildable: () => boolean;
-}
+import type {
+	MessageToolCall,
+	MessageToolCompletion,
+	ToolDefinition,
+} from './openai.js';
 
 export type ToolRequestHandler = (
 	request: MessageToolCall,
