@@ -1,12 +1,9 @@
 import { OpenAI } from 'openai';
-import {
-	AgentInitConfiguration,
-	type AgentInitConfig,
-	Agent,
-} from '../agent/agent.js';
+import { Agent } from '@agent';
 import { DEFAULT_OPENAI_MODEL } from '@consts';
-import type { IAgent, IBuilder, ITool } from '@definitions';
+import type { AgentInitConfig, IAgent, IBuilder, ITool } from '@definitions';
 import { MessageRunner } from '@message-runner';
+import { AgentInitConfiguration } from '@parsers';
 
 export class AgentBuilder implements IBuilder<IAgent> {
 	private name: AgentInitConfig['name'] = '';

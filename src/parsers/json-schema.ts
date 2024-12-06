@@ -1,40 +1,42 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const jsonSchema: z.ZodTypeAny = z.lazy(() =>
-  z.object({
-    // Common JSON Schema properties
-    $schema: z.string().optional(),
-    $id: z.string().optional(),
-    $ref: z.string().optional(),
+// Extend the jsonSchema definition with optional "description"
+const jsonSchema: z.ZodTypeAny = z.lazy(() =>
+	z.object({
+		$schema: z.string().optional(),
+		$id: z.string().optional(),
+		$ref: z.string().optional(),
 
-    // Basic type validation
-    type: z
-      .union([
-        z.literal("string"),
-        z.literal("number"),
-        z.literal("integer"),
-        z.literal("boolean"),
-        z.literal("null"),
-        z.literal("object"),
-        z.literal("array"),
-      ])
-      .optional(),
-
-    // `properties` should be a record of string -> JSON Schema
-    properties: z.record(jsonSchema).optional(),
-
-    // `items` can be a single schema or an array of schemas
-    items: z.union([jsonSchema, z.array(jsonSchema)]).optional(),
-
-    // `required` should be an array of strings
-    required: z.array(z.string()).optional(),
-
-    // `additionalProperties` can be a boolean or another schema
-    additionalProperties: z.union([z.boolean(), jsonSchema]).optional(),
-  })
+		type: z
+			.union([
+				z.literal('string'),
+				z.literal('number'),
+				z.literal('integer'),
+				z.literal('boolean'),
+				z.literal('null'),
+				z.literal('object'),
+				z.literal('array'),
+			])
+			.optional(),
+		properties: z.record(jsonSchema).optional(),
+		items: z.union([jsonSchema, z.array(jsonSchema)]).optional(),
+		required: z.array(z.string()).optional(),
+		additionalProperties: z.union([z.boolean(), jsonSchema]).optional(),
+		description: z.string().optional(),
+	}),
 );
 
-// Now define a schema that specifically checks an object with a `properties` field is valid:
 export const schemaWithProperties = z.object({
-  properties: z.record(jsonSchema),
+	properties: z.record(jsonSchema),
+});
+
+// Now create a parser for the function definition.
+// The `parameters` field is a JSON Schema object.
+export const functionDefinitionSchema = z.object({
+	type: z.literal('function'),
+	function: z.object({
+		name: z.string(),
+		description: z.string(),
+		parameters: jsonSchema,
+	}),
 });

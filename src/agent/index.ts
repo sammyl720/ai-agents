@@ -1,5 +1,1 @@
-export {
-	Agent,
-	type AgentInitConfig,
-	AgentInitConfiguration,
-} from './agent.js';
+export { Agent } from './agent.js';

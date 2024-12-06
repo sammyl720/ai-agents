@@ -4,6 +4,7 @@ import type {
 	MessageToolCompletion,
 	ToolDefinition,
 } from './openai.js';
+import type { IAgent } from '@definitions';
 
 export type ToolRequestHandler = (
 	request: MessageToolCall,
@@ -17,14 +18,6 @@ export interface ITool {
 	/** Tool can be used by all agents when set to true. */
 	readonly IsGlobal: boolean;
 	isIncluded(tools: ITool[]): boolean;
-}
-
-export interface IAgent extends EventEmitter, ITool {
-	initialize(orchestrator: IOrchestrator): void;
-	getGlobalTools(): ITool[];
-	addGlobalTool(tool: ITool): void;
-	readonly AgentDetails: string;
-	readonly IsGlobal: false;
 }
 
 export interface IOrchestrator extends EventEmitter {

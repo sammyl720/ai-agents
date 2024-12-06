@@ -1,4 +1,4 @@
-import { ToolBuilder } from '../builders/tool-builder.js';
+import { ToolBuilder } from '@builders';
 import { z } from 'zod';
 import type {
 	IAgent,

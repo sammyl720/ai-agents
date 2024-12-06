@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import EventEmitter from 'events';
-import { Agent } from '../agent/agent.js';
+import { Agent } from '@agent';
 
 import { randomUUID } from 'node:crypto';
 import type { TaskSnapshot } from '@definitions';

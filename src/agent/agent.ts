@@ -1,7 +1,7 @@
-import { z } from 'zod';
 import EventEmitter from 'events';
 import {
 	isTaskSnapshot,
+	type AgentInitConfig,
 	type IAgent,
 	type IOrchestrator,
 	type ITool,
@@ -13,21 +13,7 @@ import { OpenAI } from 'openai';
 import { MessageHandler } from '@message-handler';
 import type { IMessageRunner } from '@message-runner';
 import { AGENT_UPDATE_EVENT, DEFAULT_OPENAI_MODEL } from '@consts';
-
-export const AgentInitConfiguration = z.object({
-	name: z.string().regex(new RegExp('^[a-zA-Z0-9_- ]{5,25}$')),
-	description: z.string().min(20).max(500),
-	model: z.string().default(DEFAULT_OPENAI_MODEL),
-});
-
-export type AgentInitConfig = {
-	/** Name of agent. Name must be alphanumeric and between 5 and 25  characters long. */
-	name: string;
-	/** Details about what the agent purpose is and what it can do. Must be between 20 and 500 characters long. */
-	description: string;
-	/** Openai model to use. */
-	model?: string;
-};
+import { AgentInitConfiguration } from '@parsers';
 
 export class Agent extends EventEmitter implements IAgent {
 	readonly name!: string;
