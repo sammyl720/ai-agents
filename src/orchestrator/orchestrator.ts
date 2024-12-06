@@ -1,5 +1,5 @@
-import { OpenAI } from 'openai';
 import type {
+	AI,
 	IAgent,
 	IOrchestrationStrategy,
 	IOrchestrator,
@@ -26,7 +26,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		this.emit(AGENT_UPDATE_EVENT, update);
 
 	constructor(
-		private openai: OpenAI,
+		private openai: AI,
 		private agents: IAgent[],
 		private tools: ITool[] = [],
 		public readonly strategy: IOrchestrationStrategy = new ProjectStrategy(),

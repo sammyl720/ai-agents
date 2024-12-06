@@ -23,7 +23,7 @@
 	"main": "dist/public-api.js",
 	"scripts": {
 		"test": "vitest run",
-		"build": "tsc",
+		"build": "tsc && node scripts/postbuild.js",
 		"ci": "npm run build && npm run check-format && npm run check-exports && npm run test",
 		"format": "prettier --write .",
 		"check-format": "prettier --check .",
@@ -38,7 +38,8 @@
 		"@changesets/cli": "^2.27.8",
 		"prettier": "^3.3.3",
 		"typescript": "^5.6.2",
-		"vitest": "^2.1.1"
+		"vitest": "^2.1.1",
+		"replace-in-file": "^8.2.0"
 	},
 	"dependencies": {
 		"openai": "^4.75.0",
