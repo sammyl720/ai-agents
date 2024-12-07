@@ -5,7 +5,6 @@ import type {
 	ITool,
 	CompletionMessage,
 	MessageToolCall,
-	MessageToolCompletion,
 	AssistantCompletionMessage,
 } from '@definitions';
 
