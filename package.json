@@ -7,6 +7,7 @@
 		"agents",
 		"typescript"
 	],
+	"types": "dist/public-api.d.ts",
 	"homepage": "https://github.com/sammyl720/ai-agents",
 	"bugs": {
 		"url": "https://github.com/sammyl720/ai-agents/issues"

@@ -1,4 +1,3 @@
-import { OpenAI } from 'openai';
 import type {
 	AssistantCompletionMessage,
 	CompletionMessage,
@@ -37,7 +36,7 @@ export class ToolRunner {
 
 	private async handleToolCall(
 		tool_call: MessageToolCall,
-	): Promise<OpenAI.Chat.Completions.ChatCompletionToolMessageParam> {
+	): Promise<MessageToolCompletion> {
 		const tool = this.tools.find((t) => t.canHandleRequest(tool_call));
 		if (!!tool) {
 			const result = await tool.handleRequest(tool_call);
