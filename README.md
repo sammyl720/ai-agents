@@ -1,29 +1,29 @@
-**@sammyl720/ai-agents**
+# @sammyl720/ai-agents
 
-# AI Agents
+**AI Agents** is a TypeScript library that extends the capabilities of [OpenAI’s Node.js API](https://github.com/openai/openai-node) by creating and orchestrating multiple agents (with their own "tools") working together to achieve a given goal.
 
-This package enables extending the capabilities of [OpenAI](https://github.com/openai/openai-node) by creating agents with tools that work together to achieve a given goal.
+## Features
 
-### Features
-
-1. Intuitive Agents Builder
-2. Predefined Tools
-3. Intuitive Tools Builder
-4. Agent Orchestration
+1. **Intuitive Agent Builder**: Easily construct agents with custom names, descriptions, and capabilities.
+2. **Predefined & Customizable Tools**: Leverage built-in tools or build your own to provide agents with specialized capabilities.
+3. **Agent Orchestration**: Coordinate multiple agents and their tools to accomplish complex tasks.
+4. **Logging & Observability**: Add optional logging to track agent messages and orchestrator updates.
 
 ## Installation
 
-Make sure you have [NodeJS](https://nodejs.org/en) version _v22.2.0_ or higher installed.
+**Prerequisites**:
 
-**Install Package**
+- **Node.js**: Ensure you have Node.js **v22.2.0 or higher** installed.
+
+**Install the Package**:
 
 ```bash
 npm install @sammyl720/ai-agents
 ```
 
-## Usage
+## Quick Start Example
 
-**Quick Start**
+Below is a minimal example showing how to create two agents—a writer and a historian—and orchestrate them to solve a prompt.
 
 ```typescript
 import {
@@ -31,75 +31,78 @@ import {
 	CompletionResult,
 	IOrchestrator,
 	ORCHESTRATOR_COMPLETED_EVENT,
-	ORCHESTRATOR_UPDATE_EVENT,
 	OrchestratorBuilder,
 } from '@sammyl720/ai-agents';
 import OpenAI from 'openai';
 
-// Initiated openai instance with your api key
+// Initialize OpenAI with your API key
 const openai = new OpenAI({
 	apiKey: process.env.OPENAI_API_KEY,
 });
 
-const agentBuilderFactory = new AgentBuilderFactory(openai);
-const writer = agentBuilderFactory
+// Create agents
+const agentFactory = new AgentBuilderFactory(openai);
+const writer = agentFactory
 	.getBuilder()
 	.setName('Writer Agent')
 	.setDescription('A clever writer that can write engaging stories.')
 	.build();
 
-const historian = agentBuilderFactory
+const historian = agentFactory
 	.getBuilder()
 	.setName('Historian Agent')
-	.setDescription('A historian with a vase knowdledge base.')
+	.setDescription('A historian with a vast knowledge base.')
 	.build();
 
+// Create orchestrator and add agents
 const orchestrator: IOrchestrator = new OrchestratorBuilder()
 	.setOpenAIClient(openai)
 	.addAgent(writer)
 	.addAgent(historian)
 	.build();
 
-orchestrator.on(
-	ORCHESTRATOR_COMPLETED_EVENT,
-	(completionResult: CompletionResult) => {
-		console.log(completionResult.summary);
-	},
-);
+// Listen for completion
+orchestrator.on(ORCHESTRATOR_COMPLETED_EVENT, (result: CompletionResult) => {
+	console.log(result.summary);
+});
+
+// Run a task
 orchestrator.run(
-	'Write a short story about why and how the Roman Empire Fell.',
+	'Write a short story about why and how the Roman Empire fell.',
 );
 ```
 
-## Using tools
+## Using Tools
 
-The agents and orchestrator can be supplied with tools that give them extra capabilites. You can use one of the custom prebuilt tools or create your own.
+Tools provide agents with enhanced capabilities. For example, you can enable file reading/writing, web searching, or any other custom function by integrating tools.
 
-### Providing prebuilt tool to agent
+### Prebuilt Tools
+
+**FileAccessTools**:  
+Allows agents to read and write files in a designated `outputs` directory. Useful for scenarios like saving generated content for later use or record-keeping.
+
+#### Adding a Prebuilt Tool to an Agent
 
 ```typescript
 import { AgentBuilder, FileAccessTools } from '@sammyl720/ai-agents';
 import OpenAI from 'openai';
 
 const openai = new OpenAI();
+const fileAccessTools = new FileAccessTools(); // Interacts with `outputs` directory
 
-// tools that will access an `outputs` directory in the current working directory.
-const fileAccessTools = new FileAccessTools();
-
-// create an agent with file access
 const writerAgent = new AgentBuilder()
 	.addOpenAIClient(openai)
-	.addTools(fileAccessTools)
+	.addTools(fileAccessTools) // Add file access capabilities
 	.setName('Blog writer')
-	.setDescription(
-		'Write a blog about how to utilitize AI. Save the blog to file.',
-	)
+	.setDescription('Writes a blog on how to utilize AI and saves it to a file.')
 	.build();
 ```
 
-#### Creating your own tool
+### Creating Your Own Tool
 
-Check out the OpenAI [documentation](https://platform.openai.com/docs/guides/function-calling) on defining and handling tools.
+You can define custom tools by providing a function specification and a corresponding request handler. For details, see the [OpenAI Function Calling documentation](https://platform.openai.com/docs/guides/function-calling).
+
+**Example:**
 
 ```typescript
 import {
@@ -108,13 +111,15 @@ import {
 	ToolBuilder,
 } from '@sammyl720/ai-agents';
 
-const fakeSearchApi = (query: string) => `Proccessing query ${query}...`;
+// A fake web search API
+const fakeSearchApi = (query: string) => `Processing query: ${query}...`;
+
 const searchTool = new ToolBuilder()
 	.setToolDefinition({
 		type: 'function',
 		function: {
 			name: 'search_web',
-			description: 'Search the web for given query',
+			description: 'Search the web for a given query',
 			parameters: {
 				type: 'object',
 				properties: {
@@ -129,30 +134,31 @@ const searchTool = new ToolBuilder()
 		},
 	})
 	.setToolRequestHandler(async (request: MessageToolCall) => {
-		// unpack request
 		const {
 			id,
 			function: { arguments: parameters },
 		} = request;
-		// parse arguments
 		const { query } = JSON.parse(parameters) as { query: string };
+
 		return {
 			tool_call_id: id,
 			role: 'tool',
 			content: fakeSearchApi(query),
 		};
 	})
-	// .setIsGlobal(true) // <- Make tool shared with all agents
+	// .setIsGlobal(true) // Uncomment to make this tool available to all agents
 	.build();
 
-const agent = new AgentBuilder()
-	.setName('Web surfer')
-	.setDescription('Searches the web form interesting content.')
+const webSurferAgent = new AgentBuilder()
+	.setName('Web Surfer')
+	.setDescription('Searches the web for interesting content.')
 	.addTool(searchTool)
 	.build();
 ```
 
-## Orchestration with file access tool example
+## Orchestration with File Access Tool Example
+
+Below is a more complex example. Two agents (a "Reviewer" and a "Storyteller") cooperate under an Orchestrator. The Orchestrator and Agents use `FileAccessTools` to log and store the generated content. Logging is enabled to observe the conversation’s progression.
 
 ```typescript
 import {
@@ -167,36 +173,34 @@ import {
 } from '@sammyl720/ai-agents';
 import OpenAI from 'openai';
 
-// Initiated openai instance with your api key
 const openai = new OpenAI({
 	apiKey: process.env.OPENAI_API_KEY,
 });
 
-const agentBuilderFactory = new AgentBuilderFactory(openai);
-const succinct = agentBuilderFactory
+const factory = new AgentBuilderFactory(openai);
+
+const reviewer = factory
 	.getBuilder()
 	.setName('Analytical Reviewer')
-	.setAgentMessageLogger(new JSONLinesFileLogger('reviewer.jsonl', 'logs')) // <- adds logger to record agent messages
 	.setDescription(
-		'A down to earth story reviewer who provides feedback regarding the feasibility and logical validity of proposed stories.',
+		'Provides feedback on feasibility and logical validity of stories.',
 	)
+	.setAgentMessageLogger(new JSONLinesFileLogger('reviewer.jsonl', 'logs')) // Log messages
 	.build();
 
-const storyTeller = agentBuilderFactory
+const storyteller = factory
 	.getBuilder()
-	.setName('Story teller')
-	.setAgentMessageLogger(new JSONLinesFileLogger('storyteller.jsonl', 'logs')) // <- adds logger to record agent messages
-	.setDescription(
-		'A brilliant storyteller with a joyful and positive disposition.',
-	)
+	.setName('Story Teller')
+	.setDescription('Crafts brilliant, joyful, and positive stories.')
+	.setAgentMessageLogger(new JSONLinesFileLogger('storyteller.jsonl', 'logs')) // Log messages
 	.build();
 
 const orchestrator: IOrchestrator = new OrchestratorBuilder()
 	.setOpenAIClient(openai)
-	.addAgent(succinct)
-	.addAgent(storyTeller)
-	.addTools(new FileAccessTools()) // <- Adding file access tools
-	.setMessageLogger(new JSONLinesFileLogger('orchestrator-log.jsonl', 'logs')) // <- adds logger to record agent messages
+	.addAgent(reviewer)
+	.addAgent(storyteller)
+	.addTools(new FileAccessTools()) // Enable file access
+	.setMessageLogger(new JSONLinesFileLogger('orchestrator-log.jsonl', 'logs')) // Orchestrator logging
 	.build();
 
 orchestrator.on(ORCHESTRATOR_UPDATE_EVENT, (update) => {
@@ -205,12 +209,21 @@ orchestrator.on(ORCHESTRATOR_UPDATE_EVENT, (update) => {
 
 orchestrator.on(
 	ORCHESTRATOR_COMPLETED_EVENT,
-	async (completionResult: CompletionResult) => {
-		console.log(completionResult.summary);
+	async (result: CompletionResult) => {
+		console.log(result.summary);
 		console.log('DONE');
 	},
 );
+
 orchestrator.run(
 	'Craft an engaging story about learning to program and save it to a markdown file.',
 );
 ```
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check out the [issues](https://github.com/sammyl720/ai-agents/issues) page.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).

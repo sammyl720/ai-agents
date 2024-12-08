@@ -5,7 +5,10 @@
 	"keywords": [
 		"openai",
 		"agents",
-		"typescript"
+		"typescript",
+		"tools",
+		"AI",
+		"Artificial Intelligence"
 	],
 	"types": "dist/public-api.d.ts",
 	"homepage": "https://github.com/sammyl720/ai-agents",
