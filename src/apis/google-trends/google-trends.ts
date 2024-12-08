@@ -1,5 +1,8 @@
 import type { GoogleTrendsJsonResponse, GoogleTrendsParams } from './types.js';
 
+/**
+ * Class That implements **SerpeAPI** [Google Trends Api](https://serpapi.com/google-trends-api)
+ */
 export class GoogleTrendsApi {
 	private apiKey: string;
 	private baseUrl: string = 'https://serpapi.com/search';
@@ -31,7 +34,8 @@ export class GoogleTrendsApi {
 		if (params.data_type !== undefined)
 			searchParams.set('data_type', params.data_type);
 		if (params.tz !== undefined) searchParams.set('tz', String(params.tz));
-		if (params.cat !== undefined) searchParams.set('cat', params.cat);
+		if (params.cat !== undefined)
+			searchParams.set('cat', params.cat.toString());
 		if (params.gprop !== undefined) searchParams.set('gprop', params.gprop);
 		if (params.date !== undefined) searchParams.set('date', params.date);
 		if (params.csv !== undefined) searchParams.set('csv', String(params.csv));
