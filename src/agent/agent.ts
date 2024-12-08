@@ -3,6 +3,7 @@ import {
 	isTaskSnapshot,
 	type AgentInitConfig,
 	type IAgent,
+	type IMessageRunner,
 	type IOrchestrator,
 	type ITool,
 	type MessageToolCall,
@@ -11,7 +12,6 @@ import {
 } from '@definitions';
 import { OpenAI } from 'openai';
 import { MessageHandler } from '@message-handler';
-import type { IMessageRunner } from '@message-runner';
 import {
 	AGENT_TASK_INPROGRESS,
 	AGENT_TASK_COMPLETED,

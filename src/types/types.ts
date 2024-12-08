@@ -1,11 +1,11 @@
 import EventEmitter from 'events';
 import type {
+	IMessageRunner,
 	MessageToolCall,
 	MessageToolCompletion,
 	ToolDefinition,
 } from './openai.js';
 import type { IAgent } from '@definitions';
-import type { IMessageRunner } from '@message-runner';
 import { z } from 'zod';
 import type { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
 

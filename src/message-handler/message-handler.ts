@@ -1,6 +1,6 @@
-import type { CompletionMessage } from '@definitions';
+import type { CompletionMessage, IMessageHandler } from '@definitions';
 
-export class MessageHandler {
+export class MessageHandler implements IMessageHandler {
 	private messages: CompletionMessage[] = [];
 
 	addMessages(messages: CompletionMessage[]) {

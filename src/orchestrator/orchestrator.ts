@@ -1,13 +1,14 @@
 import type {
 	AI,
 	IAgent,
+	IMessageRunner,
 	IOrchestrationStrategy,
 	IOrchestrator,
 	ITool,
 } from '@definitions';
 import { MessageHandler } from '@message-handler';
 import { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
-import { MessageRunner, type IMessageRunner } from '@message-runner';
+import { MessageRunner } from '@message-runner';
 import {
 	AGENT_TASK_COMPLETED,
 	AGENT_TASK_INPROGRESS,
