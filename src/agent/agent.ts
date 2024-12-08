@@ -180,8 +180,10 @@ export class Agent extends EventEmitter implements IAgent {
 		};
 	}
 
-	AgentDetails = `
+	get AgentDetails() {
+		return `
     **Title**: ${this.name}
     **Description**: ${this.description!}
     `;
+	}
 }

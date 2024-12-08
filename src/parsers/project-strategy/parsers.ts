@@ -7,7 +7,7 @@ export const ProjectUpdateParser = z.object({
 export const ProjectCompletionParser = z.object({
 	summary: z.string(),
 	result: z.string(),
-	actionTaken: z.array(
+	actionsTaken: z.array(
 		z.object({
 			action: z.string(),
 			result: z.string(),

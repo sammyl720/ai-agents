@@ -47,7 +47,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 
 	getAgentsDetails(): string {
 		return this.agents.reduce((details, current) => {
-			return `${details}${current}`;
+			return `${details}${current.AgentDetails}`;
 		}, '');
 	}
 
