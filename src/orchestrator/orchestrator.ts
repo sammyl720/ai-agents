@@ -20,6 +20,7 @@ import EventEmitter from 'events';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 import type { Task } from 'src/tasks/task.js';
 import type { TypeOf } from 'zod';
+import { NoOpLogger } from '@loggers';
 
 export class Orchestrator extends EventEmitter implements IOrchestrator {
 	private instructions = '';
@@ -38,6 +39,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		private agents: IAgent[],
 		private tools: ITool[] = [],
 		public readonly strategy: IOrchestrationStrategy = new ProjectStrategy(),
+		private messageLogger = new NoOpLogger(),
 	) {
 		super();
 		this.globalTools = this.tools.filter((tool) => tool.IsGlobal);
@@ -83,8 +85,8 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		this.isRunning = true;
 		let currentMesage = await runner.run(this.messageHandler, tools);
 		while (this.isRunning && currentMesage != null) {
+			this.messageLogger.info(JSON.stringify(currentMesage));
 			this.emit(ORCHESTRATOR_UPDATE_EVENT, currentMesage);
-			this.messageHandler.addMessage(currentMesage);
 			currentMesage = await runner.run(this.messageHandler, tools);
 		}
 

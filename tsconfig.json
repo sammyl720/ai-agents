@@ -32,7 +32,8 @@
 			"@message-runner": ["src/message-runner/index.js"],
 			"@consts": ["src/consts.js"],
 			"@parsers": ["src/parsers/index.js"],
-			"@factory": ["src/factory/index.js"]
+			"@factory": ["src/factory/index.js"],
+			"@loggers": ["src/loggers/index.js"]
 		}
 	},
 	"include": ["src/**/*"],

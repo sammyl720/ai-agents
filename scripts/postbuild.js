@@ -11,6 +11,7 @@ const aliasMappings = {
 	'@consts': '../consts.js',
 	'@parsers': '../parsers/index.js',
 	'@factory': '../factory/index.js',
+	'@loggers': '../loggers/index.js',
 };
 
 // Convert alias mappings into an array of `from` and `to`

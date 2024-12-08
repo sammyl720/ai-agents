@@ -1,19 +1,20 @@
 import type {
 	AI,
 	IAgent,
-	IBuilder,
+	ILogger,
 	IOrchestrationStrategy,
-	IOrchestrator,
 	ITool,
 } from '@definitions';
 import { Orchestrator } from '../orchestrator/orchestrator.js';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
+import { NoOpLogger } from '../loggers/no-op-logger.js';
 
-export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
+export class OrchestratorBuilder {
 	private openAI: AI | null = null;
 	private agents: IAgent[] = [];
 	private strategy: IOrchestrationStrategy = new ProjectStrategy();
 	private tools: ITool[] = [];
+	private messageLogger: ILogger = new NoOpLogger();
 
 	build() {
 		if (this.openAI === null) {
@@ -31,6 +32,7 @@ export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
 			this.agents,
 			this.tools,
 			this.strategy,
+			this.messageLogger,
 		);
 	}
 
@@ -72,6 +74,11 @@ export class OrchestratorBuilder implements IBuilder<IOrchestrator> {
 			this.addAgent(agent);
 		}
 
+		return this;
+	}
+
+	setMessageLogger(logger: ILogger) {
+		this.messageLogger = logger;
 		return this;
 	}
 }
