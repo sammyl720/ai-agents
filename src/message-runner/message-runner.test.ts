@@ -129,7 +129,7 @@ describe('MessageRunner', () => {
 					role: 'tool',
 					content: 'Tool completed',
 				}),
-				isIncluded: (t) => t.length > 0,
+				isIncluded: (t) => [...t].length > 0,
 			},
 		];
 

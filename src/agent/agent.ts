@@ -12,7 +12,6 @@ import {
 	type TaskSnapshot,
 } from '@definitions';
 import { OpenAI } from 'openai';
-import { MessageHandler } from '@message-handler';
 import {
 	AGENT_TASK_INPROGRESS,
 	AGENT_TASK_COMPLETED,
@@ -122,8 +121,13 @@ export class Agent extends EventEmitter implements IAgent {
 		});
 	}
 
-	isIncluded(tools: ITool[]): boolean {
-		return tools.some((t) => this.toolName === t.toolName);
+	isIncluded(tools: Iterable<ITool>): boolean {
+		for (const t of tools) {
+			if (t.toolName === this.toolName) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	getGlobalTools(): ITool[] {
