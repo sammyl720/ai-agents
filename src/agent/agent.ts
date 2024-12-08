@@ -54,7 +54,6 @@ export class Agent extends EventEmitter implements IAgent {
 	}
 
 	initialize(orchestrator: IOrchestrator) {
-		this.messageHandler = new MessageHandler();
 		this.messageRunner = orchestrator.getMessageRunner();
 		this.messageHandler.addMessage({
 			role: 'system',
