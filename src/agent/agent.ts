@@ -79,33 +79,38 @@ export class Agent extends EventEmitter implements IAgent {
 	async handleRequest(
 		request: MessageToolCall,
 	): Promise<MessageToolCompletion> {
-		const payload = JSON.parse(request.function.arguments);
 		const response: MessageToolCompletion = {
 			role: 'tool',
 			tool_call_id: request.id,
 			content: '',
 		};
 
-		if (!this.canHandleRequest(request) || !isTaskSnapshot(payload)) {
-			response.content = `{ "error": "Tool name or payload is invalid" }`;
-			return response;
-		} else if (this.messageRunner === null) {
-			this.currentTask?.abort('No MessageRunner supplied');
-			this.emit(AGENT_TASK_COMPLETED, this.currentTask);
-			response.content = `{ "error": "Agent is not available." }`;
-			return response;
-		}
+		try {
+			const payload = JSON.parse(request.function.arguments);
+			if (!this.canHandleRequest(request) || !isTaskSnapshot(payload)) {
+				response.content = `{ "error": "Tool name or payload is invalid" }`;
+				return response;
+			} else if (this.messageRunner === null) {
+				this.currentTask?.abort('No MessageRunner supplied');
+				this.emit(AGENT_TASK_COMPLETED, this.currentTask);
+				response.content = `{ "error": "Agent is not available." }`;
+				return response;
+			}
 
-		this.addTaskMessage(payload);
+			this.addTaskMessage(payload);
 
-		const newMessage = await this.messageRunner.run(
-			this.messageHandler,
-			this.tools,
-		);
-		response.content = newMessage?.content?.toString() ?? 'No response';
-		this.currentTask?.complete(response.content);
-		if (!!newMessage?.content) {
-			this.emit(AGENT_TASK_COMPLETED, this.currentTask);
+			const newMessage = await this.messageRunner.run(
+				this.messageHandler,
+				this.tools,
+			);
+			response.content = newMessage?.content?.toString() ?? 'No response';
+			this.currentTask?.complete(response.content);
+			if (!!newMessage?.content) {
+				this.emit(AGENT_TASK_COMPLETED, this.currentTask);
+			}
+		} catch (error) {
+			console.error(error);
+			response.content = JSON.stringify(error);
 		}
 		return response;
 	}

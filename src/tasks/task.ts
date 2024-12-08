@@ -37,7 +37,7 @@ export class Task implements TaskSnapshot {
 	}
 
 	get AssignedAgent() {
-		return this.assignedAgent;
+		return this.assignedAgent?.name ?? null;
 	}
 
 	constructor(
@@ -79,7 +79,7 @@ export class Task implements TaskSnapshot {
 			status: this.status,
 			description: this.description,
 			additionalContext: JSON.parse(this.additionalContext),
-			assignedAgent: this.assignedAgent,
+			assignedAgent: this.AssignedAgent,
 		});
 	}
 }

@@ -83,10 +83,10 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		];
 
 		this.isRunning = true;
-		let currentMesage = await runner.run(this.messageHandler, tools);
-		while (this.isRunning && currentMesage != null) {
-			this.emit(ORCHESTRATOR_UPDATE_EVENT, currentMesage);
-			currentMesage = await runner.run(this.messageHandler, tools);
+		let currentMessage = await runner.run(this.messageHandler, tools);
+		while (this.isRunning && currentMessage != null) {
+			this.emit(ORCHESTRATOR_UPDATE_EVENT, currentMessage);
+			currentMessage = await runner.run(this.messageHandler, tools);
 		}
 
 		this.removeAgentListener();
