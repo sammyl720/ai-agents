@@ -3,7 +3,7 @@ import type {
 	ITool,
 	IToolGroup,
 	ToolRequestHandler,
-} from '@definitions';
+} from '../../types/index.js';
 import { Tool } from '../tool.js';
 import { createToolDefinition } from '../util.js';
 
