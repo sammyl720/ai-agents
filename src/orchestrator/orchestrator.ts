@@ -61,7 +61,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 
 	async run(instrucions: string) {
 		this.instructions = instrucions;
-		this.messageHandler = new MessageHandler();
+		this.messageHandler = new MessageHandler(this.messageLogger);
 		this.agents.forEach((agent) => {
 			this.addGlobalTools(agent);
 			agent.initialize(this);
@@ -85,7 +85,6 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		this.isRunning = true;
 		let currentMesage = await runner.run(this.messageHandler, tools);
 		while (this.isRunning && currentMesage != null) {
-			this.messageLogger.info(JSON.stringify(currentMesage));
 			this.emit(ORCHESTRATOR_UPDATE_EVENT, currentMesage);
 			currentMesage = await runner.run(this.messageHandler, tools);
 		}

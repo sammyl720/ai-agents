@@ -3,6 +3,7 @@ import {
 	isTaskSnapshot,
 	type AgentInitConfig,
 	type IAgent,
+	type IMessageHandler,
 	type IMessageRunner,
 	type IOrchestrator,
 	type ITool,
@@ -27,7 +28,6 @@ export class Agent extends EventEmitter implements IAgent {
 	readonly IsGlobal = false;
 
 	private readonly model = DEFAULT_OPENAI_MODEL;
-	private messageHandler = new MessageHandler();
 	private allTools: ITool[] = [];
 	private currentTask: Task | null = null;
 	private messageRunner: IMessageRunner | null = null;
@@ -43,6 +43,7 @@ export class Agent extends EventEmitter implements IAgent {
 
 	constructor(
 		configuration: AgentInitConfig,
+		private messageHandler: IMessageHandler,
 		private tools: ITool[] = [],
 	) {
 		super();
@@ -128,9 +129,7 @@ export class Agent extends EventEmitter implements IAgent {
 	addTaskMessage(taskSnapshot: TaskSnapshot) {
 		this.currentTask = this.assignTask(taskSnapshot);
 
-		const messageContent = `Complete the following task:
-        Task Id: ${this.currentTask.id}
-        Task Description: ${this.currentTask.description}\n
+		const messageContent = `${this.currentTask.description}
         Additional Context: ${this.currentTask.additionalContext ?? 'None'}`;
 		this.messageHandler.addMessage({
 			role: 'system',
