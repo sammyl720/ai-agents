@@ -1,4 +1,4 @@
-# @sammyl720/ai-agents
+# @sammyl/ai-agents
 
 **AI Agents** is a TypeScript library that extends the capabilities of [OpenAI’s Node.js API](https://github.com/openai/openai-node) by creating and orchestrating multiple agents (with their own "tools") working together to achieve a given goal.
 
@@ -18,7 +18,7 @@
 **Install the Package**:
 
 ```bash
-npm install @sammyl720/ai-agents
+npm install @sammyl/ai-agents
 ```
 
 ## Quick Start Example
@@ -32,7 +32,7 @@ import {
 	IOrchestrator,
 	ORCHESTRATOR_COMPLETED_EVENT,
 	OrchestratorBuilder,
-} from '@sammyl720/ai-agents';
+} from '@sammyl/ai-agents';
 import OpenAI from 'openai';
 
 // Initialize OpenAI with your API key
@@ -84,7 +84,7 @@ Allows agents to read and write files in a designated `outputs` directory. Usefu
 #### Adding a Prebuilt Tool to an Agent
 
 ```typescript
-import { AgentBuilder, FileAccessTools } from '@sammyl720/ai-agents';
+import { AgentBuilder, FileAccessTools } from '@sammyl/ai-agents';
 import OpenAI from 'openai';
 
 const openai = new OpenAI();
@@ -109,7 +109,7 @@ import {
 	AgentBuilder,
 	MessageToolCall,
 	ToolBuilder,
-} from '@sammyl720/ai-agents';
+} from '@sammyl/ai-agents';
 
 // A fake web search API
 const fakeSearchApi = (query: string) => `Processing query: ${query}...`;
@@ -170,7 +170,7 @@ import {
 	ORCHESTRATOR_COMPLETED_EVENT,
 	ORCHESTRATOR_UPDATE_EVENT,
 	OrchestratorBuilder,
-} from '@sammyl720/ai-agents';
+} from '@sammyl/ai-agents';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
