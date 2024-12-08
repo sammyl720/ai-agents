@@ -80,6 +80,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 			...this.agents,
 			...this.globalTools,
 			...this.strategy.getOrchestratorTools(this),
+			...this.tools.filter((t) => !t.IsGlobal),
 		];
 
 		this.isRunning = true;

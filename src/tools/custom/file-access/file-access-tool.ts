@@ -3,7 +3,6 @@ import type {
 	ITool,
 	MessageToolCall,
 	MessageToolCompletion,
-	ToolRequestHandler,
 } from '@definitions';
 import { ToolGroup } from '../tool-group.js';
 import { FileAccessApi, type IFileAccessApi } from './file-access-api.js';
@@ -23,6 +22,7 @@ const newFileContentParser = z.object({
 export class FileAccessTools extends ToolGroup {
 	constructor(
 		private fileAccessApi: IFileAccessApi = new FileAccessApi('outputs'),
+		private isGlobal = false,
 	) {
 		super();
 		this.initialize();
@@ -243,6 +243,10 @@ export class FileAccessTools extends ToolGroup {
 	}
 
 	private addFileAccessTool(definition: FunctionDefinition) {
-		this.addTool(definition, (request) => this.handleRequest(request), true);
+		this.addTool(
+			definition,
+			(request) => this.handleRequest(request),
+			this.isGlobal,
+		);
 	}
 }
