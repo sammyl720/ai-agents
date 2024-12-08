@@ -61,13 +61,13 @@ export class FileAccessApi implements IFileAccessApi {
 		}
 	}
 
-	async getFileContent(fileName: string): Promise<boolean> {
+	async getFileContent(fileName: string): Promise<string> {
 		const filePath = join(this.basePath, fileName);
 		try {
-			await fs.readFile(filePath, 'utf8');
-			return true;
+			const content = await fs.readFile(filePath, 'utf8');
+			return content;
 		} catch {
-			return false;
+			return '';
 		}
 	}
 
@@ -104,7 +104,7 @@ export interface IFileAccessApi {
 	listFiles(dirname: string): Promise<string[]>;
 	addFile(fileName: string, content: string): Promise<boolean>;
 	updateFile(fileName: string, updatedContent: string): Promise<boolean>;
-	getFileContent(fileName: string): Promise<boolean>;
+	getFileContent(fileName: string): Promise<string>;
 	deleteFile(fileName: string): Promise<boolean>;
 	saveImage(imageUrl: string, fileName: string): Promise<boolean>;
 }
