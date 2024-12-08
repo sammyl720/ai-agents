@@ -1,5 +1,5 @@
 import { AgentBuilder } from '@builders';
-import type { AI, IAgent, IBuilderFactory } from '@definitions';
+import type { AI } from '@definitions';
 
 export class AgentBuilderFactory {
 	constructor(private openai: AI) {}

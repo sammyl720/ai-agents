@@ -3,16 +3,14 @@ import { DEFAULT_OPENAI_MODEL } from '@consts';
 import type {
 	AgentInitConfig,
 	AI,
-	IBuilder,
 	ITool,
-	IAgent,
 	ILogger,
 } from '@definitions';
 import { NoOpLogger } from '@loggers';
 import { MessageHandler } from '@message-handler';
 import { AgentInitConfiguration } from '@parsers';
 
-export class AgentBuilder implements IBuilder<IAgent> {
+export class AgentBuilder {
 	private name: AgentInitConfig['name'] = '';
 	private description: AgentInitConfig['description'] = '';
 	private model?: string;
@@ -69,6 +67,7 @@ export class AgentBuilder implements IBuilder<IAgent> {
 
 	setAgentMessageLogger(logger: ILogger) {
 		this.agentMessageLogger = logger;
+		return this;
 	}
 
 	private get initConfig(): Required<AgentInitConfig> | null {
