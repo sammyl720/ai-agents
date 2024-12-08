@@ -1,11 +1,6 @@
 import { Agent } from '@agent';
 import { DEFAULT_OPENAI_MODEL } from '@consts';
-import type {
-	AgentInitConfig,
-	AI,
-	ITool,
-	ILogger,
-} from '@definitions';
+import type { AgentInitConfig, AI, ITool, ILogger } from '@definitions';
 import { NoOpLogger } from '@loggers';
 import { MessageHandler } from '@message-handler';
 import { AgentInitConfiguration } from '@parsers';

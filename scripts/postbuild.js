@@ -28,10 +28,12 @@ const declaritionFileMaps = {
 };
 
 function replaceTextInFiles(textReplacementMap, filesToReplaceGlob) {
-	const replaceOptions = Object.entries(textReplacementMap).map(([alias, path]) => ({
-		from: new RegExp(alias, 'g'), // Match alias in the code
-		to: path, // Replace it with the resolved path
-	}));
+	const replaceOptions = Object.entries(textReplacementMap).map(
+		([alias, path]) => ({
+			from: new RegExp(alias, 'g'), // Match alias in the code
+			to: path, // Replace it with the resolved path
+		}),
+	);
 
 	const options = {
 		files: filesToReplaceGlob, // Replace in the transpiled JavaScript files
@@ -45,7 +47,7 @@ function replaceTextInFiles(textReplacementMap, filesToReplaceGlob) {
 try {
 	const results = await Promise.all([
 		replaceTextInFiles(aliasMappings, 'dist/**/*.js'),
-		replaceTextInFiles(declaritionFileMaps, 'dist/**/*.d.ts')
+		replaceTextInFiles(declaritionFileMaps, 'dist/**/*.d.ts'),
 	]);
 	console.log('Path aliases replaced:', results);
 } catch (error) {
