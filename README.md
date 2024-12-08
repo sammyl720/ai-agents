@@ -105,11 +105,7 @@ You can define custom tools by providing a function specification and a correspo
 **Example:**
 
 ```typescript
-import {
-	AgentBuilder,
-	MessageToolCall,
-	ToolBuilder,
-} from '@sammyl/ai-agents';
+import { AgentBuilder, MessageToolCall, ToolBuilder } from '@sammyl/ai-agents';
 
 // A fake web search API
 const fakeSearchApi = (query: string) => `Processing query: ${query}...`;
