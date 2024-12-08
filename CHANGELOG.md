@@ -1,5 +1,12 @@
 # tt-package-demo
 
+## 1.1.1
+
+### Patch Changes
+
+- 4c182dc: Update package name
+- 960a2be: Update package name
+
 ## 1.1.0
 
 ### Minor Changes
