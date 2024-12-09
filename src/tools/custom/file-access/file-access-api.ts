@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import { join, isAbsolute } from 'path';
+import path, { join, isAbsolute } from 'path';
 
 export class FileAccessApi implements IFileAccessApi {
 	constructor(private basePath: string = process.cwd()) {
@@ -7,6 +7,7 @@ export class FileAccessApi implements IFileAccessApi {
 		if (!isAbsolute(this.basePath)) {
 			this.basePath = join(process.cwd(), this.basePath);
 		}
+		console.log(this.basePath);
 	}
 
 	async createDirectory(dirname: string): Promise<boolean> {
@@ -36,14 +37,15 @@ export class FileAccessApi implements IFileAccessApi {
 			await fs.access(filePath);
 			// If we can access it, it exists
 			return false;
-		} catch {
+		} catch (e) {
 			// File does not exist, proceed
 		}
 
 		try {
+			await fs.mkdir(path.dirname(filePath), { recursive: true });
 			await fs.writeFile(filePath, content, { flag: 'wx' }); // 'wx' ensures fail if file exists
 			return true;
-		} catch {
+		} catch (e) {
 			return false;
 		}
 	}
