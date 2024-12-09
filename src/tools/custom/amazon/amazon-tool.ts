@@ -11,7 +11,6 @@ import { z } from 'zod';
 const searchParser = z.object({
 	query: z.string(),
 	pageNumber: z.number().optional(),
-	resultCount: z.number().positive().max(40).default(20),
 });
 
 const productDetailsParser = z.object({
@@ -50,11 +49,6 @@ export class AmazonTools extends ToolGroup {
 						type: 'number',
 						description: 'Page number for paginated results.',
 						default: 1,
-					},
-					resultCount: {
-						type: 'number',
-						description:
-							'Specify a limit of results to return. Default is 20. Max is 40',
 					},
 				},
 				required: ['query'],
@@ -96,11 +90,11 @@ export class AmazonTools extends ToolGroup {
 		try {
 			switch (name) {
 				case 'amazon_search_products': {
-					const { query, pageNumber, resultCount } = searchParser.parse(inputs);
+					const { query, pageNumber } = searchParser.parse(inputs);
 					const result = await this.amazonApi.search(query, pageNumber);
 					response.content = JSON.stringify({
 						message: 'Search completed successfully.',
-						result: result.slice(0, resultCount),
+						result: result,
 					});
 					break;
 				}

@@ -28,7 +28,7 @@ export class AmazonApi {
 	async search(
 		query: string,
 		pageNumber?: number,
-	): Promise<AmazonSearchResult['results']> {
+	): Promise<AmazonSearchResult> {
 		const params = new URLSearchParams();
 		params.set('api_key', this.apiKey);
 		params.set('country', this.country);
@@ -39,7 +39,7 @@ export class AmazonApi {
 		}
 		const url = `${ROOT_ENDPOINT}/search?${params.toString()}`;
 		const response = await fetch(url);
-		const json = (await response.json()) as AmazonSearchResult;
+		const json = await response.json();
 		return json.results;
 	}
 
