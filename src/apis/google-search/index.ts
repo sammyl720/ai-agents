@@ -18,7 +18,6 @@ export class GoogleSearchApi {
 		});
 
 		const url = `https://www.googleapis.com/customsearch/v1?${params.toString()}`;
-
 		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error(`Google Search API error: ${response.statusText}`);
