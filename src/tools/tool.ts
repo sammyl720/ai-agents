@@ -1,8 +1,13 @@
-import type { ITool, MessageToolCall, ToolRequestHandler } from '@definitions';
+import type {
+	ITool,
+	MessageToolCall,
+	ToolDefinition,
+	ToolRequestHandler,
+} from '@definitions';
 
 export class Tool implements ITool {
 	constructor(
-		public readonly definition: ITool['definition'],
+		public readonly definition: ToolDefinition,
 		public handleRequest: ToolRequestHandler,
 		public readonly IsGlobal = false,
 	) {}
