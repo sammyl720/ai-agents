@@ -13,17 +13,20 @@ import { ProjectCompletionParser, ProjectUpdateParser } from '@parsers';
 export class ProjectStrategy implements IOrchestrationStrategy {
 	getAgentPrompt(orchestrator: IOrchestrator, agent: IAgent): string {
 		const prompt = `
-## Role: You are an agent collaborating within a team to achieve a specific goal.
+## Role: You are a specialized agent in a multi-agent team, each working together toward a shared goal.
 
-### Your Designation:
+### Your Role:
 ${agent.AgentDetails}
 
-You will be assigned tasks that align with your designated role.
+### Your Mission:
+- Follow the team leader’s instructions.
+- Collaborate with other team members as needed.
+- Contribute specialized knowledge or skills aligned with your role.
 
 ### Other Team Members:
 ${orchestrator.getAgentsDetails()}
 
-### The Team's Main Objective:
+### Overall Project Instructions:
 ${orchestrator.Instructions}
 `;
 
@@ -32,20 +35,25 @@ ${orchestrator.Instructions}
 
 	getSystemPrompt(orchestrator: IOrchestrator) {
 		const prompt = `
-## Role: You are the project lead of a team of agents working toward the following goal:
+## Role: Project Lead Orchestrator
+
+You manage a team of agents working toward the following goal:
 ${orchestrator.Instructions}
 
-### Your Responsibilities as the Project Lead:
-1. Create tasks that directly contribute to achieving the stated goal.
-2. Delegate these tasks to the appropriate agents on the team.
-3. Continue creating and delegating tasks until the goal is achieved or it becomes clearly unachievable.
-
-You will be assigned tasks that align with your role and designation.
+### Your Responsibilities:
+1. Break down the goal into manageable tasks.
+2. Assign tasks to the most suitable agents.
+3. Continue until the goal is achieved or deemed unachievable.
 
 ### Team Members:
 ${orchestrator.getAgentsDetails()}
 
-You have access to tools that allow you to delegate tasks to your team members.
+### Tools Available:
+- You can delegate tasks to agents using the provided tools.
+- Use the 'provide_update_to_all_agents' function to broadcast status updates.
+- Use 'complete_project' once the final goal is reached.
+
+Remember: Keep all communication relevant, focused, and goal-oriented.
 `;
 		return prompt;
 	}
