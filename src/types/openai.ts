@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+import type OpenAI from 'openai';
 import type { ITool } from './tools.js';
 
 /**
@@ -6,6 +6,10 @@ import type { ITool } from './tools.js';
  */
 export interface AI {
 	chat: Chat;
+}
+
+export interface AIEmbedding {
+	embeddings: Embeddings;
 }
 
 export interface Chat {
@@ -16,6 +20,12 @@ export interface Completions {
 	create: (body: CreateChatParams) => Promise<ChatCompletion>;
 }
 
+export interface Embeddings {
+	create: (request: CreateEmbeddingParams) => Promise<CreateEmbeddingResponse>;
+}
+
+export type CreateEmbeddingParams = OpenAI.Embeddings.EmbeddingCreateParams;
+export type CreateEmbeddingResponse = OpenAI.CreateEmbeddingResponse;
 export type ToolDefinition = OpenAI.Chat.Completions.ChatCompletionTool;
 export type MessageToolCall =
 	OpenAI.Chat.Completions.ChatCompletionMessageToolCall;
