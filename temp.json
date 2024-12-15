@@ -1,0 +1,939 @@
+{
+	"analysis": {
+		"packageName": "@sammyl/ai-agents",
+		"packageVersion": "1.1.1",
+		"types": {
+			"kind": "included"
+		},
+		"buildTools": {
+			"@arethetypeswrong/cli": "^0.16.4",
+			"typescript": "^5.6.2"
+		},
+		"entrypoints": {
+			".": {
+				"subpath": ".",
+				"resolutions": {
+					"node10": {
+						"name": ".",
+						"resolutionKind": "node10",
+						"resolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.d.ts",
+							"isJson": false,
+							"isTypeScript": true,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.ts'. ========",
+								"Explicitly specified module resolution kind: 'Node10'.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, Declaration.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+								"Found 'package.json' at '/node_modules/@sammyl/ai-agents/package.json'.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.d.ts' does not exist.",
+								"'package.json' does not have a 'typesVersions' field.",
+								"'package.json' does not have a 'typings' field.",
+								"'package.json' has 'types' field 'dist/public-api.d.ts' that references '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts'.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' exists - use it as a name resolution result.",
+								"'package.json' does not have a 'peerDependencies' field.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' with Package ID '@sammyl/ai-agents/dist/public-api.d.ts@1.1.1'. ========"
+							]
+						},
+						"implementationResolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.js",
+							"isJson": false,
+							"isTypeScript": false,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.ts'. ========",
+								"Explicitly specified module resolution kind: 'Node10'.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"Found 'package.json' at '/node_modules/@sammyl/ai-agents/package.json'.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"'package.json' does not have a 'typesVersions' field.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: JavaScript, JSON.",
+								"Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"File '/node_modules/@sammyl/ai-agents.js' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.jsx' does not exist.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js' exists - use it as a name resolution result.",
+								"'package.json' does not have a 'peerDependencies' field.",
+								"Resolution of non-relative name failed; trying with '--moduleResolution bundler' to see if project may need configuration update.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.js' with Package ID '@sammyl/ai-agents/dist/public-api.js@1.1.1'. ========"
+							]
+						},
+						"files": [
+							"/node_modules/typescript/lib/lib.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/json-schema.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/project-strategy/parsers.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/tools.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/openai.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/builders.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/agent-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/json-lines-file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/no-op-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/orchestrator.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/orchestrator-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool-runner.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/tool-group.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/amazon-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/google-trends.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/amazon-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/delay/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/tool-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestration-strategies/project-strategy.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/consts.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/agent-builder-factory.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/public-api.d.ts"
+						],
+						"visibleProblems": [0]
+					},
+					"node16-cjs": {
+						"name": ".",
+						"resolutionKind": "node16-cjs",
+						"resolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.d.ts",
+							"isJson": false,
+							"isTypeScript": true,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.ts'. ========",
+								"Explicitly specified module resolution kind: 'Node16'.",
+								"Resolving in CJS mode with conditions 'require', 'types', 'node'.",
+								"File '/package.json' does not exist.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+								"Found 'package.json' at '/node_modules/@sammyl/ai-agents/package.json'.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.d.ts' does not exist.",
+								"'package.json' does not have a 'typesVersions' field.",
+								"'package.json' does not have a 'typings' field.",
+								"'package.json' has 'types' field 'dist/public-api.d.ts' that references '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts'.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' exists - use it as a name resolution result.",
+								"'package.json' does not have a 'peerDependencies' field.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' with Package ID '@sammyl/ai-agents/dist/public-api.d.ts@1.1.1'. ========"
+							]
+						},
+						"implementationResolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.js",
+							"isJson": false,
+							"isTypeScript": false,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.ts'. ========",
+								"Explicitly specified module resolution kind: 'Node16'.",
+								"Resolving in CJS mode with conditions 'require', 'node'.",
+								"File '/package.json' does not exist.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, JavaScript, JSON.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"Found 'package.json' at '/node_modules/@sammyl/ai-agents/package.json'.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"'package.json' does not have a 'typesVersions' field.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"File '/node_modules/@sammyl/ai-agents.js' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.jsx' does not exist.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js' exists - use it as a name resolution result.",
+								"'package.json' does not have a 'peerDependencies' field.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.js' with Package ID '@sammyl/ai-agents/dist/public-api.js@1.1.1'. ========"
+							]
+						},
+						"files": [
+							"/node_modules/typescript/lib/lib.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/json-schema.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/project-strategy/parsers.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/tools.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/openai.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/builders.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/agent-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/json-lines-file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/no-op-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/orchestrator.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/orchestrator-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool-runner.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/tool-group.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/amazon-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/google-trends.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/amazon-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/delay/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/tool-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestration-strategies/project-strategy.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/consts.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/agent-builder-factory.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/public-api.d.ts"
+						],
+						"visibleProblems": [1, 2]
+					},
+					"node16-esm": {
+						"name": ".",
+						"resolutionKind": "node16-esm",
+						"resolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.d.ts",
+							"isJson": false,
+							"isTypeScript": true,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.mts'. ========",
+								"Explicitly specified module resolution kind: 'Node16'.",
+								"Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+								"File '/package.json' does not exist according to earlier cached lookups.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"'package.json' does not have a 'typings' field.",
+								"'package.json' has 'types' field 'dist/public-api.d.ts' that references '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts'.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' exists - use it as a name resolution result.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' with Package ID '@sammyl/ai-agents/dist/public-api.d.ts@1.1.1'. ========"
+							]
+						},
+						"implementationResolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.js",
+							"isJson": false,
+							"isTypeScript": false,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.mts'. ========",
+								"Explicitly specified module resolution kind: 'Node16'.",
+								"Resolving in ESM mode with conditions 'import', 'node'.",
+								"File '/package.json' does not exist according to earlier cached lookups.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, JavaScript, JSON.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File name '/node_modules/@sammyl/ai-agents/index.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js' exists - use it as a name resolution result.",
+								"Resolution of non-relative name failed; trying with modern Node resolution features disabled to see if npm library needs configuration update.",
+								"File '/package.json' does not exist according to earlier cached lookups.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File name '/node_modules/@sammyl/ai-agents/index.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.js' with Package ID '@sammyl/ai-agents/dist/public-api.js@1.1.1'. ========"
+							]
+						},
+						"files": [
+							"/node_modules/typescript/lib/lib.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/json-schema.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/project-strategy/parsers.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/tools.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/openai.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/builders.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/agent-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/json-lines-file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/no-op-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/orchestrator.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/orchestrator-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool-runner.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/tool-group.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/amazon-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/google-trends.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/amazon-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/delay/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/tool-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestration-strategies/project-strategy.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/consts.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/agent-builder-factory.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/public-api.d.ts"
+						],
+						"visibleProblems": [2]
+					},
+					"bundler": {
+						"name": ".",
+						"resolutionKind": "bundler",
+						"resolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.d.ts",
+							"isJson": false,
+							"isTypeScript": true,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.ts'. ========",
+								"Explicitly specified module resolution kind: 'Bundler'.",
+								"Resolving in CJS mode with conditions 'import', 'types'.",
+								"File '/package.json' does not exist.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.",
+								"Found 'package.json' at '/node_modules/@sammyl/ai-agents/package.json'.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.d.ts' does not exist.",
+								"'package.json' does not have a 'typesVersions' field.",
+								"'package.json' does not have a 'typings' field.",
+								"'package.json' has 'types' field 'dist/public-api.d.ts' that references '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts'.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' exists - use it as a name resolution result.",
+								"'package.json' does not have a 'peerDependencies' field.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.d.ts' with Package ID '@sammyl/ai-agents/dist/public-api.d.ts@1.1.1'. ========"
+							]
+						},
+						"implementationResolution": {
+							"fileName": "/node_modules/@sammyl/ai-agents/dist/public-api.js",
+							"isJson": false,
+							"isTypeScript": false,
+							"trace": [
+								"======== Resolving module '@sammyl/ai-agents' from '/index.ts'. ========",
+								"Explicitly specified module resolution kind: 'Bundler'.",
+								"Resolving in CJS mode with conditions 'import'.",
+								"File '/package.json' does not exist.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript, JavaScript, JSON.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"Found 'package.json' at '/node_modules/@sammyl/ai-agents/package.json'.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"'package.json' does not have a 'typesVersions' field.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"File '/node_modules/@sammyl/ai-agents.js' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.jsx' does not exist.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js' exists - use it as a name resolution result.",
+								"'package.json' does not have a 'peerDependencies' field.",
+								"Resolution of non-relative name failed; trying with modern Node resolution features disabled to see if npm library needs configuration update.",
+								"File '/package.json' does not exist according to earlier cached lookups.",
+								"Loading module '@sammyl/ai-agents' from 'node_modules' folder, target file types: TypeScript.",
+								"Searching all ancestor node_modules directories for preferred extensions: TypeScript.",
+								"File '/node_modules/@sammyl/ai-agents/package.json' exists according to earlier cached lookups.",
+								"File '/node_modules/@sammyl/ai-agents.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents.tsx' does not exist.",
+								"'package.json' has 'main' field 'dist/public-api.js' that references '/node_modules/@sammyl/ai-agents/dist/public-api.js'.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/public-api.js', target file types: TypeScript.",
+								"File name '/node_modules/@sammyl/ai-agents/dist/public-api.js' has a '.js' extension - stripping it.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.tsx' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/dist/public-api.js.tsx' does not exist.",
+								"Directory '/node_modules/@sammyl/ai-agents/dist/public-api.js' does not exist, skipping all lookups in it.",
+								"File '/node_modules/@sammyl/ai-agents/index.ts' does not exist.",
+								"File '/node_modules/@sammyl/ai-agents/index.tsx' does not exist.",
+								"======== Module name '@sammyl/ai-agents' was successfully resolved to '/node_modules/@sammyl/ai-agents/dist/public-api.js' with Package ID '@sammyl/ai-agents/dist/public-api.js@1.1.1'. ========"
+							]
+						},
+						"files": [
+							"/node_modules/typescript/lib/lib.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/json-schema.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/project-strategy/parsers.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/parsers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/tools.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/openai.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/builders.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/types/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/agent.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/agent/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/agent-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/json-lines-file-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/no-op-logger.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/loggers/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/orchestrator.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/orchestrator-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool-runner.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/tool-group.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/amazon-api.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/types.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/google-trends.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/apis/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/amazon-tool.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/google-search/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/webpage/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/custom/delay/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/tools/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/tool-builder.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/builders/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestration-strategies/project-strategy.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/orchestrator/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/consts.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/agent-builder-factory.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/factory/index.d.ts",
+							"/node_modules/@sammyl/ai-agents/dist/public-api.d.ts"
+						],
+						"visibleProblems": [3]
+					}
+				},
+				"hasTypes": true,
+				"isWildcard": false
+			}
+		},
+		"programInfo": {
+			"node10": {},
+			"node16": {
+				"moduleKinds": {
+					"/node_modules/typescript/lib/lib.d.ts": {
+						"detectedKind": 1,
+						"detectedReason": "no:type",
+						"reasonFileName": "/node_modules/typescript/lib/lib.d.ts"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/parsers/json-schema.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/parsers/agent.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/parsers/project-strategy/parsers.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/parsers/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/types.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/tools.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/openai.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/builders.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/agent.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/logger.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/types/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/agent/agent.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/agent/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/builders/agent-builder.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/loggers/file-logger.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/loggers/json-lines-file-logger.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/loggers/no-op-logger.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/loggers/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/orchestrator/orchestrator.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/builders/orchestrator-builder.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/tool-runner.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/tool.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/tool-group.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-api.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/file-access-tool.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/file-access/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/amazon/types.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/amazon/amazon-api.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/amazon/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/types.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/google-trends.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/google-trends/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/google-search/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/webpage/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/apis/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/amazon-tool.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/amazon/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/google-search/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/webpage/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/custom/delay/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/tools/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/builders/tool-builder.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/builders/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/orchestration-strategies/project-strategy.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/orchestrator/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/consts.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/factory/agent-builder-factory.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/factory/index.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/public-api.d.ts": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					},
+					"/node_modules/@sammyl/ai-agents/dist/public-api.js": {
+						"detectedKind": 99,
+						"detectedReason": "type",
+						"reasonFileName": "/node_modules/@sammyl/ai-agents/package.json"
+					}
+				}
+			},
+			"bundler": {}
+		},
+		"problems": [
+			{
+				"kind": "InternalResolutionError",
+				"resolutionOption": "node10",
+				"fileName": "/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+				"moduleSpecifier": "../types/index.d.ts",
+				"pos": 32,
+				"end": 54,
+				"trace": [
+					"======== Resolving module '../types/index.d.ts' from '/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts'. ========",
+					"Explicitly specified module resolution kind: 'Node10'.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: TypeScript, Declaration.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: JavaScript, JSON.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"======== Module name '../types/index.d.ts' was not resolved. ========"
+				]
+			},
+			{
+				"kind": "CJSResolvesToESM",
+				"entrypoint": ".",
+				"resolutionKind": "node16-cjs"
+			},
+			{
+				"kind": "InternalResolutionError",
+				"resolutionOption": "node16",
+				"fileName": "/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+				"moduleSpecifier": "../types/index.d.ts",
+				"pos": 32,
+				"end": 54,
+				"resolutionMode": 99,
+				"trace": [
+					"======== Resolving module '../types/index.d.ts' from '/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts'. ========",
+					"Explicitly specified module resolution kind: 'Node16'.",
+					"Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: TypeScript, JavaScript, Declaration, JSON.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"======== Module name '../types/index.d.ts' was not resolved. ========"
+				]
+			},
+			{
+				"kind": "InternalResolutionError",
+				"resolutionOption": "bundler",
+				"fileName": "/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+				"moduleSpecifier": "../types/index.d.ts",
+				"pos": 32,
+				"end": 54,
+				"resolutionMode": 99,
+				"trace": [
+					"======== Resolving module '../types/index.d.ts' from '/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts'. ========",
+					"Explicitly specified module resolution kind: 'Bundler'.",
+					"Resolving in CJS mode with conditions 'import', 'types'.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: TypeScript, JavaScript, Declaration, JSON.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"======== Module name '../types/index.d.ts' was not resolved. ========"
+				]
+			}
+		]
+	},
+	"problems": {
+		"InternalResolutionError": [
+			{
+				"kind": "InternalResolutionError",
+				"resolutionOption": "node10",
+				"fileName": "/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+				"moduleSpecifier": "../types/index.d.ts",
+				"pos": 32,
+				"end": 54,
+				"trace": [
+					"======== Resolving module '../types/index.d.ts' from '/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts'. ========",
+					"Explicitly specified module resolution kind: 'Node10'.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: TypeScript, Declaration.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: JavaScript, JSON.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"======== Module name '../types/index.d.ts' was not resolved. ========"
+				]
+			},
+			{
+				"kind": "InternalResolutionError",
+				"resolutionOption": "node16",
+				"fileName": "/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+				"moduleSpecifier": "../types/index.d.ts",
+				"pos": 32,
+				"end": 54,
+				"resolutionMode": 99,
+				"trace": [
+					"======== Resolving module '../types/index.d.ts' from '/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts'. ========",
+					"Explicitly specified module resolution kind: 'Node16'.",
+					"Resolving in ESM mode with conditions 'import', 'types', 'node'.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: TypeScript, JavaScript, Declaration, JSON.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"======== Module name '../types/index.d.ts' was not resolved. ========"
+				]
+			},
+			{
+				"kind": "InternalResolutionError",
+				"resolutionOption": "bundler",
+				"fileName": "/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts",
+				"moduleSpecifier": "../types/index.d.ts",
+				"pos": 32,
+				"end": 54,
+				"resolutionMode": 99,
+				"trace": [
+					"======== Resolving module '../types/index.d.ts' from '/node_modules/@sammyl/ai-agents/dist/apis/embeddings/index.d.ts'. ========",
+					"Explicitly specified module resolution kind: 'Bundler'.",
+					"Resolving in CJS mode with conditions 'import', 'types'.",
+					"Loading module as file / folder, candidate module location '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts', target file types: TypeScript, JavaScript, Declaration, JSON.",
+					"Directory '/node_modules/@sammyl/ai-agents/dist/apis/types' does not exist, skipping all lookups in it.",
+					"File name '/node_modules/@sammyl/ai-agents/dist/apis/types/index.d.ts' has a '.d.ts' extension - stripping it.",
+					"======== Module name '../types/index.d.ts' was not resolved. ========"
+				]
+			}
+		],
+		"CJSResolvesToESM": [
+			{
+				"kind": "CJSResolvesToESM",
+				"entrypoint": ".",
+				"resolutionKind": "node16-cjs"
+			}
+		]
+	}
+}

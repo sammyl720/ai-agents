@@ -36,26 +36,6 @@ export class AmazonTools extends ToolGroup {
 
 	private toolDefinitions: FunctionDefinition[] = [
 		{
-			name: 'amazon_search_products',
-			description: 'Search Amazon products by query.',
-			parameters: {
-				type: 'object',
-				properties: {
-					query: {
-						type: 'string',
-						description: 'The search keyword or phrase.',
-					},
-					pageNumber: {
-						type: 'number',
-						description: 'Page number for paginated results.',
-						default: 1,
-					},
-				},
-				required: ['query'],
-				additionalProperties: false,
-			},
-		},
-		{
 			name: 'amazon_get_product_details',
 			description: 'Get product details by ASIN.',
 			parameters: {
@@ -89,21 +69,12 @@ export class AmazonTools extends ToolGroup {
 
 		try {
 			switch (name) {
-				case 'amazon_search_products': {
-					const { query, pageNumber } = searchParser.parse(inputs);
-					const result = await this.amazonApi.search(query, pageNumber);
-					response.content = JSON.stringify({
-						message: 'Search completed successfully.',
-						result: result,
-					});
-					break;
-				}
 				case 'amazon_get_product_details': {
 					const { asin } = productDetailsParser.parse(inputs);
 					const result = await this.amazonApi.getProductDetails(asin);
 					response.content = JSON.stringify({
 						message: 'Product details retrieved successfully.',
-						result,
+						result: JSON.parse(result),
 					});
 					break;
 				}

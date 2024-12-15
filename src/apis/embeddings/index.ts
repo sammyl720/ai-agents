@@ -1,4 +1,4 @@
-import type { AIEmbedding } from '@definitions';
+import type { AIEmbedding } from '../../types/openai.js';
 
 export const DEFAULT_EMBEDDINGS_MODEL = 'text-embedding-3-small';
 

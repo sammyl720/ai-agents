@@ -30,8 +30,12 @@ export class FileAccessApi implements IFileAccessApi {
 		}
 	}
 
-	async addFile(fileName: string, content: string): Promise<boolean> {
-		const filePath = join(this.basePath, fileName);
+	async addFile(
+		fileName: string,
+		content: string,
+		dirname?: string,
+	): Promise<boolean> {
+		const filePath = this.getFilePath(fileName, dirname);
 		try {
 			// Check if file exists
 			await fs.access(filePath);
@@ -50,8 +54,12 @@ export class FileAccessApi implements IFileAccessApi {
 		}
 	}
 
-	async updateFile(fileName: string, updatedContent: string): Promise<boolean> {
-		const filePath = join(this.basePath, fileName);
+	async updateFile(
+		fileName: string,
+		updatedContent: string,
+		dirname?: string,
+	): Promise<boolean> {
+		const filePath = this.getFilePath(fileName, dirname);
 		try {
 			// Check if file exists
 			await fs.access(filePath);
@@ -63,8 +71,8 @@ export class FileAccessApi implements IFileAccessApi {
 		}
 	}
 
-	async getFileContent(fileName: string): Promise<string> {
-		const filePath = join(this.basePath, fileName);
+	async getFileContent(fileName: string, dirname?: string): Promise<string> {
+		const filePath = this.getFilePath(fileName, dirname);
 		try {
 			const content = await fs.readFile(filePath, 'utf8');
 			return content;
@@ -73,8 +81,8 @@ export class FileAccessApi implements IFileAccessApi {
 		}
 	}
 
-	async deleteFile(fileName: string): Promise<boolean> {
-		const filePath = join(this.basePath, fileName);
+	async deleteFile(fileName: string, dirname?: string): Promise<boolean> {
+		const filePath = this.getFilePath(fileName, dirname);
 		try {
 			await fs.unlink(filePath);
 			return true;
@@ -83,8 +91,12 @@ export class FileAccessApi implements IFileAccessApi {
 		}
 	}
 
-	async saveImage(imageUrl: string, fileName: string): Promise<boolean> {
-		const filePath = join(this.basePath, fileName);
+	async saveImage(
+		imageUrl: string,
+		fileName: string,
+		dirname?: string,
+	): Promise<boolean> {
+		const filePath = this.getFilePath(fileName, dirname);
 
 		try {
 			const response = await fetch(imageUrl);
@@ -98,6 +110,22 @@ export class FileAccessApi implements IFileAccessApi {
 		} catch {
 			return false;
 		}
+	}
+
+	canAccessDirectory(dirname?: string): dirname is string {
+		return (
+			typeof dirname !== 'undefined' &&
+			dirname !== '' &&
+			!dirname.startsWith('..') &&
+			!dirname.startsWith('/')
+		);
+	}
+
+	private getFilePath(fileName: string, dirname?: string) {
+		const basePath = this.canAccessDirectory(dirname)
+			? join(this.basePath, dirname)
+			: this.basePath;
+		return join(basePath, fileName);
 	}
 }
 

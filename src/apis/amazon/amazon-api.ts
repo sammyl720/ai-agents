@@ -48,7 +48,7 @@ export class AmazonApi {
 	 * @param asin Amazon Standard Identification Number.
 	 * @returns @see {@link AmazonProductDetailsResponse}
 	 */
-	async getProductDetails(asin: string): Promise<AmazonProductDetailsResponse> {
+	async getProductDetails(asin: string): Promise<string> {
 		const params = new URLSearchParams();
 		params.set('api_key', this.apiKey);
 		params.set('country', this.country);
@@ -57,8 +57,7 @@ export class AmazonApi {
 
 		const url = `${ROOT_ENDPOINT}/product?${params.toString()}`;
 		const response = await fetch(url);
-		const json = (await response.json()) as AmazonProductDetailsResponse;
-		return json;
+		return response.text();
 	}
 
 	/**
