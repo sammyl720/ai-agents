@@ -32,6 +32,7 @@
 		"format": "prettier --write .",
 		"check-format": "prettier --check .",
 		"check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+		"check-exports-json": "attw --pack . -f json --ignore-rules=cjs-resolves-to-esm",
 		"dev": "vitest",
 		"prepublishOnly": "npm run ci",
 		"local-release": "changeset version && changeset publish"
