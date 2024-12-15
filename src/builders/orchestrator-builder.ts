@@ -82,6 +82,7 @@ export class OrchestratorBuilder {
 
 	setModel(model: string) {
 		this.model = model;
+		return this;
 	}
 
 	setMessageLogger(logger: ILogger) {
