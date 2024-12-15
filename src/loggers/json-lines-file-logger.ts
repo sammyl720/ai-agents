@@ -27,8 +27,17 @@ export class JSONLinesFileLogger extends FileLogger {
 		const entry = {
 			timestamp,
 			level,
-			message,
+			message: this.parseJson(message),
 		};
 		return JSON.stringify(entry) + ',\n';
+	}
+
+	private parseJson(json: string): string | unknown {
+		try {
+			const parsed = JSON.parse(json);
+			return parsed;
+		} catch (error) {
+			return json;
+		}
 	}
 }
