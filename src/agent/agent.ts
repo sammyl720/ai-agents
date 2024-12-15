@@ -12,11 +12,7 @@ import {
 	type TaskSnapshot,
 } from '@definitions';
 import { OpenAI } from 'openai';
-import {
-	AGENT_TASK_INPROGRESS,
-	AGENT_TASK_COMPLETED,
-	DEFAULT_OPENAI_MODEL,
-} from '@consts';
+import { AGENT_TASK_INPROGRESS, AGENT_TASK_COMPLETED } from '../consts.js';
 import { AgentInitConfiguration, ProjectUpdateParser } from '@parsers';
 import { Task } from '../tasks/task.js';
 import type { TypeOf } from 'zod';
@@ -25,8 +21,6 @@ export class Agent extends EventEmitter implements IAgent {
 	readonly name!: string;
 	readonly description!: string;
 	readonly IsGlobal = false;
-
-	private readonly model = DEFAULT_OPENAI_MODEL;
 	private allTools: ITool[] = [];
 	private currentTask: Task | null = null;
 	private messageRunner: IMessageRunner | null = null;

@@ -8,6 +8,7 @@ import type {
 import { Orchestrator } from '../orchestrator/orchestrator.js';
 import { ProjectStrategy } from '../orchestration-strategies/project-strategy.js';
 import { NoOpLogger } from '../loggers/no-op-logger.js';
+import { DEFAULT_OPENAI_MODEL } from '../consts.js';
 
 export class OrchestratorBuilder {
 	private openAI: AI | null = null;
@@ -15,6 +16,7 @@ export class OrchestratorBuilder {
 	private strategy: IOrchestrationStrategy = new ProjectStrategy();
 	private tools: ITool[] = [];
 	private messageLogger: ILogger = new NoOpLogger();
+	private model = DEFAULT_OPENAI_MODEL;
 
 	build() {
 		if (this.openAI === null) {
@@ -33,6 +35,7 @@ export class OrchestratorBuilder {
 			this.tools,
 			this.strategy,
 			this.messageLogger,
+			this.model,
 		);
 	}
 
@@ -75,6 +78,10 @@ export class OrchestratorBuilder {
 		}
 
 		return this;
+	}
+
+	setModel(model: string) {
+		this.model = model;
 	}
 
 	setMessageLogger(logger: ILogger) {

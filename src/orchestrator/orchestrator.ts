@@ -40,6 +40,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 		private tools: ITool[] = [],
 		public readonly strategy: IOrchestrationStrategy = new ProjectStrategy(),
 		private messageLogger = new NoOpLogger(),
+		public readonly model = DEFAULT_OPENAI_MODEL,
 	) {
 		super();
 		this.globalTools = this.tools.filter((tool) => tool.IsGlobal);
@@ -52,7 +53,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 	}
 
 	getMessageRunner(): IMessageRunner {
-		return new MessageRunner(this.openai, DEFAULT_OPENAI_MODEL);
+		return new MessageRunner(this.openai, this.model);
 	}
 
 	get Instructions() {
@@ -75,7 +76,7 @@ export class Orchestrator extends EventEmitter implements IOrchestrator {
 			content: this.strategy.getSystemPrompt(this),
 		});
 
-		const runner = new MessageRunner(this.openai, DEFAULT_OPENAI_MODEL);
+		const runner = new MessageRunner(this.openai, this.model);
 		const tools = [
 			...this.agents,
 			...this.globalTools,
